@@ -11,8 +11,8 @@ exports.config = merge(wdioConf.config, {
             'os' : 'OS X',
             'osVersion' : 'Big Sur',
             'local': true,
-            'projectName' : 'Mediacoder',
-            'buildName' : 'Mediacoder on OS X Safari'
+            'projectName' : 'Boilerplate Angular',
+            'buildName' : 'Boilerplate Angular on OS X Safari'
         },
         browserName: 'Safari',
         acceptInsecureCerts: true

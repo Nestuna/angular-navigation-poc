@@ -11,8 +11,8 @@ exports.config = merge(wdioConf.config, {
             'os' : 'Windows',
             'osVersion' : '10',
             'local': true,
-            'projectName' : 'Mediacoder',
-            'buildName' : 'Mediacoder on Windows 10 firefox'
+            'projectName' : 'Boilerplate Angular',
+            'buildName' : 'Boilerplate Angular on Windows 10 firefox'
         },
         browserName: 'firefox',
         acceptInsecureCerts: true
