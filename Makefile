@@ -57,9 +57,6 @@ test_browser_local: run_container
 	sleep 20
 	npm run e2e-local
 
-clean:
-	rm -rf dist/ .npm/ node_modules/
-
 run: run_container
 	docker exec -it ${TMP_DOCKER_CT} make serve
 
@@ -79,3 +76,17 @@ pull_docker_img:
 
 publish_docker_img: build_docker_img
 	docker push ${DOCKER_IMG}
+
+stop:
+	$(MAKE) clean_docker
+
+clean:
+	rm -rf dist/ .npm/ node_modules/
+
+clean_docker:
+	docker top ${TMP_DOCKER_CT} &> /dev/null && docker exec -t ${TMP_DOCKER_CT} make clean || true
+	$(MAKE) kill_docker
+
+kill_docker:
+	docker kill ${TMP_DOCKER_CT} || true
+	docker rm ${TMP_DOCKER_CT} || true

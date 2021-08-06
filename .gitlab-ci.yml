@@ -1,0 +1,94 @@
+---
+stages:
+  - docker_build
+  - lint
+  - tests
+  - build
+  - publish
+  - e2e_tests
+  - trigger_yocto_ci
+
+
+.dind_job: &dind_job_template
+  image: registry.ubicast.net/docker/dind-compose
+  services:
+    - docker:dind
+  tags:
+    - docker
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.ubicast.net
+
+build_docker_image:
+  <<: *dind_job_template
+  stage: docker_build
+  script:
+    - make publish_docker_img
+
+lint:
+  stage: lint
+  image: registry.ubicast.net/mediaserver/boilerplate-angular
+  tags:
+    - docker
+  script:
+    - make lint
+
+unit_test_job:
+  stage: tests
+  image: registry.ubicast.net/mediaserver/boilerplate-angular
+  tags:
+    - docker
+  script:
+    - make test
+  coverage: '/^Lines\s+:\s+(\d+\.*\d*)%/'
+  artifacts:
+    paths:
+    - node_modules
+    expire_in: 1 day
+
+build_project:
+  stage: build
+  image: registry.ubicast.net/mediaserver/boilerplate-angular
+  tags:
+    - docker
+  script:
+    - make build_angular
+  artifacts:
+    paths:
+    - dist/
+    expire_in: 1 week
+
+.e2e_test_job: &e2e_test_template
+  <<: *dind_job_template
+  stage: e2e_tests
+  after_script:
+    - make clean_docker
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.ubicast.net
+    - make pull_docker_img
+  tags:
+    - browserstack
+
+
+test_e2e_chrome:
+  <<: *e2e_test_template
+  script:
+    - make test_browser BROWSER_NAME=chrome
+
+
+test_e2e_safari:
+  <<: *e2e_test_template
+  script:
+    - make test_browser BROWSER_NAME=safari
+
+
+test_e2e_edge:
+  <<: *e2e_test_template
+  script:
+    - make test_browser BROWSER_NAME=edge
+
+test_e2e_firefox:
+  <<: *e2e_test_template
+  script:
+    - make test_browser BROWSER_NAME=firefox
+
+...
