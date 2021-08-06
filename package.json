@@ -7,6 +7,11 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test --detect-open-handles --collect-coverage",
+    "e2e-chrome": "npx wdio run webdriverio/windows/chrome.conf.js",
+    "e2e-firefox": "npx wdio run webdriverio/windows/firefox.conf.js",
+    "e2e-edge": "npx wdio run webdriverio/windows/edge.conf.js",
+    "e2e-safari": "npx wdio run webdriverio/osx/safari.conf.js",
+    "e2e-local": "npx wdio run webdriverio/local.conf.js",
     "lint": "ng lint"
   },
   "private": true,
@@ -37,8 +42,17 @@
     "@types/node": "^12.11.1",
     "@typescript-eslint/eslint-plugin": "4.28.2",
     "@typescript-eslint/parser": "4.28.2",
+    "@wdio/browserstack-service": "^7.7.4",
+    "@wdio/cli": "^7.9.0",
+    "@wdio/local-runner": "^7.7.4",
+    "@wdio/mocha-framework": "^7.7.4",
+    "@wdio/spec-reporter": "^7.7.3",
+    "chromedriver": "^91.0.1",
     "eslint": "^7.26.0",
     "jest": "^27.0.6",
-    "typescript": "~4.3.5"
+    "ts-node": "^10.1.0",
+    "typescript": "~4.3.5",
+    "wdio-chromedriver-service": "^7.1.1",
+    "wdio-wait-for": "^2.1.0"
   }
 }
