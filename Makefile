@@ -21,6 +21,7 @@ serve: install_deps
 
 build_angular:
 ifndef CI
+	$(MAKE) run_container
 	docker exec -e CI=1 -t ${TMP_DOCKER_CT} make build_angular
 else
 	npm clean-install
@@ -29,6 +30,7 @@ endif
 
 lint:
 ifndef CI
+	$(MAKE) run_container
 	docker exec -e CI=1 -t ${TMP_DOCKER_CT} make lint
 else
 	$(MAKE) install_deps
@@ -37,21 +39,23 @@ endif
 
 test:
 ifndef CI
+	$(MAKE) run_container
 	docker exec -e CI=1 -t ${TMP_DOCKER_CT} make test
 else
 	npm clean-install-test --no-cache --debug
 endif
 
 test_browser:
-ifndef CI
+ifndef IN_CONTAINER
 	$(MAKE) run_container
 	docker exec -d ${TMP_DOCKER_CT} make serve
-	docker exec -e CI=1 -t ${TMP_DOCKER_CT} make test_browser BROWSER_NAME=${BROWSER_NAME}
+	docker exec -e IN_CONTAINER=1 -t ${TMP_DOCKER_CT} make test_browser BROWSER_NAME=${BROWSER_NAME}
 else
 	npm run e2e-${BROWSER_NAME}
 endif
 
 test_browser_local: run_container
+	$(MAKE) run_container
 	docker exec -d ${TMP_DOCKER_CT} make serve
 	@echo "Wait 20s dev server start"
 	sleep 20
@@ -61,7 +65,7 @@ run: run_container
 	docker exec -it ${TMP_DOCKER_CT} make serve
 
 run_container:
-	docker container stop ${TMP_DOCKER_CT}; \
+	docker container rm -f ${TMP_DOCKER_CT}; \
 	docker run -dit ${DOCKER_EXTRA_ARGS} \
 		-e BROWSERSTACK_USER=${BROWSERSTACK_USER} \
 		-e BROWSERSTACK_ACCESS_KEY=${BROWSERSTACK_ACCESS_KEY} \
