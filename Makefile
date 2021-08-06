@@ -15,16 +15,22 @@ install_deps:
 	npm set progress=false
 	test -d node_modules || npm clean-install --no-audit > /dev/null
 
-build: install_deps
-	npm run build
-
 serve: install_deps
 	npm start -- --host 0.0.0.0
 
-lint: install_deps
+build_angular:
+ifndef CI
+	docker exec -e CI=1 -t ${TMP_DOCKER_CT} make build_angular
+else
+	npm clean-install
+	npm run build
+endif
+
+lint:
 ifndef CI
 	docker exec -e CI=1 -t ${TMP_DOCKER_CT} make lint
 else
+	$(MAKE) install_deps
 	npm run lint
 endif
 
