@@ -63,6 +63,8 @@ run: run_container
 run_container:
 	docker container stop ${TMP_DOCKER_CT}; \
 	docker run -dit ${DOCKER_EXTRA_ARGS} \
+		-e BROWSERSTACK_USER=${BROWSERSTACK_USER} \
+		-e BROWSERSTACK_ACCESS_KEY=${BROWSERSTACK_ACCESS_KEY} \
 		--hostname=boilerplate-angular \
 		-v ${CURDIR}:/ui \
 		-p ${DOCKER_PORT}:4200 \
