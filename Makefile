@@ -58,7 +58,7 @@ run:
 	docker exec -it ${TMP_DOCKER_CT} make serve
 
 build_docker_img:
-	docker build -t ${DOCKER_IMG} -f docker/Dockerfile .
+	docker build -t ${DOCKER_IMG} --no-cache -f docker/Dockerfile .
 
 pull_docker_img:
 	docker pull ${DOCKER_IMG}
