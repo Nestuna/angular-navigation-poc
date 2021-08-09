@@ -10,6 +10,10 @@ TMP_DOCKER_CT ?= boilerplate-angular-ct-${CI_PIPELINE_ID}
 
 BROWSER_NAME ?= chrome
 
+BROWSERSTACK_USER ?= required_for_bs
+
+BROWSERSTACK_ACCESS_KEY ?= required_for_bs
+
 install_deps:
 	npm set progress=false
 	test -d node_modules || npm clean-install --no-audit > /dev/null
