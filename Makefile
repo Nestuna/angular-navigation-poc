@@ -4,8 +4,6 @@ export
 DOCKER_REGISTRY ?= registry.ubicast.net
 DOCKER_IMG ?= ${DOCKER_REGISTRY}/mediaserver/boilerplate-angular
 
-DOCKER_PORT ?= 4200
-
 CI_PIPELINE_ID ?= 1
 
 TMP_DOCKER_CT ?= boilerplate-angular-ct-${CI_PIPELINE_ID}
@@ -71,7 +69,7 @@ run_container:
 		-e BROWSERSTACK_ACCESS_KEY=${BROWSERSTACK_ACCESS_KEY} \
 		--hostname=boilerplate-angular \
 		-v ${CURDIR}:/ui \
-		-p ${DOCKER_PORT}:4200 \
+		-p 4200:4200 \
 		--name ${TMP_DOCKER_CT} --rm ${DOCKER_IMG}
 
 build_docker_img:
