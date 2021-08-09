@@ -47,6 +47,8 @@ test_browser:
 ifndef IN_CONTAINER
 	$(MAKE) run_container
 	docker exec -d ${TMP_DOCKER_CT} make serve
+	@echo "Wait 20s dev server start"
+	sleep 20
 	docker exec -e IN_CONTAINER=1 -t ${TMP_DOCKER_CT} make test_browser BROWSER_NAME=${BROWSER_NAME}
 else
 	npm run e2e-${BROWSER_NAME}
