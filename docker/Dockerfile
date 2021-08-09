@@ -12,4 +12,4 @@ RUN npm install -g npm
 
 WORKDIR /ui
 
-EXPOSE 4200
+EXPOSE 8000

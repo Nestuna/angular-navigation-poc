@@ -19,7 +19,7 @@ install_deps:
 	test -d node_modules || npm clean-install --no-audit > /dev/null
 
 serve: install_deps
-	npm start -- --host 0.0.0.0 --disable-host-check
+	npm start -- --host 0.0.0.0 --port 8000 --disable-host-check
 
 build_angular:
 ifndef CI
@@ -75,7 +75,7 @@ run_container:
 		-e BROWSERSTACK_ACCESS_KEY=${BROWSERSTACK_ACCESS_KEY} \
 		--hostname=boilerplate-angular \
 		-v ${CURDIR}:/ui \
-		-p 4200:4200 \
+		-p 8000:8000 \
 		--name ${TMP_DOCKER_CT} --rm ${DOCKER_IMG}
 
 build_docker_img:
