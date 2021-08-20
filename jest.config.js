@@ -22,5 +22,6 @@ module.exports = {
 
   testMatch: [
     '<rootDir>/tests/unit/*.spec.ts'
-  ]
+  ],
+  "modulePathIgnorePatterns": ["<rootDir>/submodules/"]
 };

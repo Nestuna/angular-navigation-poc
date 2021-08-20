@@ -8,6 +8,6 @@ describe('App component', () => {
     await page.navigateTo();
   });
   it('should be loaded', async () => {
-    expect(await page.getTitle()).toContain('boilerplate-angular app is running!');
+    expect(await page.getTitle()).toContain('boilerplate-angular');
   });
 });
