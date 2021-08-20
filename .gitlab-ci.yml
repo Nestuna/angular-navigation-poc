@@ -1,4 +1,7 @@
 ---
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
 stages:
   - docker_build
   - lint
