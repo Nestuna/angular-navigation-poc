@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AngularMediaserverServiceService } from 'angular-mediaserver-service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'boilerplate-angular';
+  response = '';
+
+  constructor(private aMSService: AngularMediaserverServiceService) {
+    aMSService.ping().subscribe((response) => {
+      this.response = JSON.stringify(response);
+    });
+  }
 }
