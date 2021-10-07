@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AngularMediaserverServiceService, MediaserverConfig } from 'angular-mediaserver-service';
+import { AngularMediaserverService, MediaserverConfig } from 'angular-mediaserver-service';
+import { UbicastAngularCommonModule } from 'ubicast-angular-common';
 
 class MediaserverConfigLocal {
   baseUrl = 'https://beta.ubicast.net';
@@ -16,11 +20,16 @@ class MediaserverConfigLocal {
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonModule,
+    UbicastAngularCommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
-    AngularMediaserverServiceService,
+    AngularMediaserverService,
     { provide: MediaserverConfig, useClass: MediaserverConfigLocal }
   ],
   bootstrap: [ AppComponent ]

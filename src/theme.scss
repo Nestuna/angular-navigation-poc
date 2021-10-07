@@ -1,0 +1,289 @@
+@use '~@angular/material' as mat;
+@import '~material-icons/iconfont/material-icons.css';
+
+$ubicast-blue: (
+  50: #e4eef7,
+  100: #bbd5ec,
+  200: #8eb9df,
+  300: #609dd2,
+  400: #3e88c9,
+  500: #1c73bf,
+  600: #196bb9,
+  700: #1460b1,
+  800: #1156a9,
+  900: #09439b,
+  A100: #c9dbff,
+  A200: #96baff,
+  A400: #6398ff,
+  A700: #4987ff,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: rgba(white, 0.87),
+    900: rgba(white, 0.87),
+    A100: rgba(black, 0.87),
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+$ubicast-green: (
+  50: #e0f1ea,
+  100: #b3dbcb,
+  200: #80c3a8,
+  300: #4dab85,
+  400: #26996a,
+  500: #008750,
+  600: #007f49,
+  700: #007440,
+  800: #006a37,
+  900: #005727,
+  A100: #89ffb2,
+  A200: #56ff91,
+  A400: #23ff70,
+  A700: #09ff60,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: rgba(white, 0.87),
+    900: rgba(white, 0.87),
+    A100: rgba(black, 0.87),
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+$ubicast-red: (
+  50: #fbe5e8,
+  100: #f4bec5,
+  200: #ed939e,
+  300: #e66777,
+  400: #e0475a,
+  500: #db263d,
+  600: #d72237,
+  700: #d21c2f,
+  800: #cd1727,
+  900: #c40d1a,
+  A100: #fff1f1,
+  A200: #ffbec1,
+  A400: #ff8b90,
+  A700: #ff7178,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: rgba(white, 0.87),
+    900: rgba(white, 0.87),
+    A100: rgba(black, 0.87),
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+/*** base theme colors **/
+$light-primary: mat.define-palette($ubicast-blue);
+$light-danger:  mat.define-palette($ubicast-red);
+$light-success: mat.define-palette($ubicast-green, 700, 200, 900);
+$light-warning: mat.define-palette(mat.$amber-palette, A700);
+$light-grey:    mat.define-palette(mat.$grey-palette, 800, 400, 900);
+$light-yellow:  mat.define-palette(mat.$grey-palette, 400, A100, A400);
+$light-theme:   mat.define-light-theme($light-primary, $light-success, $light-danger);
+
+/*####### Global ##########*/
+a {
+  color: mat.get-color-from-palette($light-primary);
+}
+/*** navigation ***/
+nav a.active {
+  color: mat.get-color-from-palette($light-primary);
+}
+.color-blue {
+  color: mat.get-color-from-palette($light-primary);
+}
+.color-red {
+  color: mat.get-color-from-palette($light-danger);
+}
+.color-green {
+  color: mat.get-color-from-palette($light-success);
+}
+.color-orange {
+  color: mat.get-color-from-palette($light-warning);
+}
+.color-grey {
+  color: mat.get-color-from-palette($light-grey);
+}
+.color-yellow {
+  color: mat.get-color-from-palette($light-yellow);
+}
+/* snackbars */
+snack-bar-container.warning {
+  background-color: mat.get-color-from-palette($light-warning);
+}
+snack-bar-container.warning .mat-simple-snackbar,
+snack-bar-container.warning .mat-simple-snackbar-action {
+  color: mat.get-contrast-color-from-palette($light-warning, A700);
+}
+snack-bar-container.danger {
+  background-color: mat.get-color-from-palette($light-danger);
+}
+snack-bar-container.success {
+  background-color: mat.get-color-from-palette($light-success);
+}
+snack-bar-container.info {
+  background-color: mat.get-color-from-palette($light-primary);
+}
+snack-bar-container.danger .mat-simple-snackbar-action,
+snack-bar-container.success .mat-simple-snackbar-action,
+snack-bar-container.info .mat-simple-snackbar-action {
+  color: white;
+}
+snack-bar-container.custom-snack-bar {
+  background: transparent;
+}
+#notifications_place .mat-list .mat-list-item {
+  border-top: 1px solid #eee;
+}
+.metadata-title {
+    color: #000000;
+}
+/*** dark theme colors **/
+@include mat.all-component-themes($light-theme);
+$dark-primary: mat.define-palette(mat.$grey-palette, 800);
+$dark-accent:  mat.define-palette($ubicast-blue, 700, 500, 900);
+$dark-warn:    mat.define-palette($ubicast-red);
+$dark-theme:   mat.define-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+$dark-font-success: mat.define-palette(mat.$green-palette, A700);
+$dark-font-accent:  mat.define-palette($ubicast-blue, A700);
+$dark-font-warn:    mat.define-palette($ubicast-red, A700);
+
+:root {
+  --light-grey: #{mat.get-color-from-palette($light-grey)};
+  --light-danger-darker: #{mat.get-color-from-palette($light-danger, darker)};
+  --light-grey-mid: #{mat.get-color-from-palette($light-grey, 500)};
+  --light-danger: #{mat.get-color-from-palette($light-danger)};
+  --light-grey-lighter: #{mat.get-color-from-palette($light-grey, lighter)};
+  --light-primary: #{mat.get-color-from-palette($light-primary)};
+  --light-success: #{mat.get-color-from-palette($light-success)};
+  --light-yellow: #{mat.get-color-from-palette($light-yellow)};
+  --light-grey-alpha: #{mat.get-color-from-palette($light-grey, 0.75)};
+}
+
+.dark-theme {
+  @include mat.all-component-colors($dark-theme);
+  @include mat.button-color($light-theme);
+  @include mat.checkbox-color($light-theme);
+  a {
+    color: mat.get-color-from-palette($dark-font-accent);
+  }
+  .color-grey {
+    color: white;
+  }
+  background-color: map-get(mat.$grey-palette, 900);
+  color: white;
+
+  .color-blue {
+    color: mat.get-color-from-palette($dark-font-accent);
+  }
+  .color-red {
+    color: mat.get-color-from-palette($dark-font-warn);
+  }
+  .color-green {
+    color: mat.get-color-from-palette($dark-font-success);
+  }
+
+  mat-sidenav {
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  snack-bar-container.warning {
+    background-color: mat.get-color-from-palette($light-warning);
+  }
+  snack-bar-container.warning .mat-simple-snackbar,
+  snack-bar-container.warning .mat-simple-snackbar-action {
+    color: mat.get-contrast-color-from-palette($light-warning, A700);
+  }
+  snack-bar-container.danger {
+    background-color: mat.get-color-from-palette($dark-warn);
+  }
+  snack-bar-container.success {
+    background-color: mat.get-color-from-palette($light-success);
+  }
+  snack-bar-container.info {
+    background-color: mat.get-color-from-palette($dark-accent);
+  }
+  snack-bar-container.danger,
+  snack-bar-container.success,
+  snack-bar-container.info,
+  snack-bar-container.danger .mat-simple-snackbar-action,
+  snack-bar-container.success .mat-simple-snackbar-action,
+  snack-bar-container.info .mat-simple-snackbar-action {
+    color: white;
+  }
+  snack-bar-container.custom-snack-bar {
+    background: transparent;
+  }
+  .navigation-sidebar {
+    border: 1px solid #424242;
+    border-right-color: rgba(255, 255, 255, 0.12);
+  }
+  .mat-icon.mat-primary,
+  .mat-button.mat-accent,
+  .mat-icon-button.mat-accent,
+  .mat-stroked-button.mat-accent {
+    color: mat.get-color-from-palette($dark-font-success);
+  }
+  .mat-icon.mat-warn,
+  .mat-button.mat-warn,
+  .mat-icon-button.mat-warn,
+  .mat-stroked-button.mat-warn {
+    color: mat.get-color-from-palette($dark-font-warn);
+  }
+  .mat-icon.mat-accent,
+  .mat-button.mat-primary,
+  .mat-icon-button.mat-primary,
+  .mat-stroked-button.mat-primary {
+    color: mat.get-color-from-palette($dark-font-accent);
+  }
+  .mat-form-field.mat-focused .mat-form-field-label,
+  .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: white;
+  }
+  .mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: white;
+  }
+  .embed-responsive-item {
+    background-color: map-get(mat.$grey-palette, 900);
+  }
+  .mat-input-element {
+    caret-color: white;
+  }
+  player-component {
+    color: white;
+    background: #666;
+  }
+  .mask-player {
+    color: white;
+    background: mat.get-color-from-palette($light-grey);
+  }
+  .metadata-title,
+  .mat-menu-item {
+    color: white!important;
+  }
+}

@@ -4,7 +4,7 @@ import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@ang
 import { RouterTestingModule } from '@angular/router/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-import { AngularMediaserverServiceService, MediaserverConfig } from 'angular-mediaserver-service';
+import { AngularMediaserverService, MediaserverConfig } from 'angular-mediaserver-service';
 
 import { AppComponent } from '../../src/app/app.component';
 
@@ -16,7 +16,7 @@ const configureTestingModuleData = {
   'declarations': [ AppComponent ],
   'imports': [ RouterTestingModule, HttpClientModule ],
   'providers': [
-    AngularMediaserverServiceService,
+    AngularMediaserverService,
     { provide: MediaserverConfig, useClass: MediaserverConfigLocal },
     { 'provide': ComponentFixtureAutoDetect, 'useValue': true }
   ],
