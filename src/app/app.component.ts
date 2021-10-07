@@ -72,4 +72,10 @@ export class AppComponent implements OnDestroy {
     }
     this.subscriptions.push(sub);
   }
+  login () {
+    if (this.loginForm.valid) {
+      console.log(this.loginForm.value['password']);
+      console.log(this.loginForm.value['rememberMe']);
+    }
+  }
 }

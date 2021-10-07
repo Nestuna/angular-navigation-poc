@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularMediaserverService, MediaserverConfig } from 'angular-mediaserver-service';
-import { UbicastAngularCommonModule } from 'ubicast-angular-common';
+import { UbicastAngularCommonModule, UbicastAngularCommonService } from 'ubicast-angular-common';
 
 class MediaserverConfigLocal {
   baseUrl = 'https://beta.ubicast.net';
@@ -19,17 +19,18 @@ class MediaserverConfigLocal {
     AppComponent
   ],
   imports: [
+    UbicastAngularCommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    MatButtonModule,
-    UbicastAngularCommonModule,
-    FormsModule,
-    ReactiveFormsModule
+    MatButtonModule
   ],
   providers: [
     AngularMediaserverService,
+    UbicastAngularCommonService,
     { provide: MediaserverConfig, useClass: MediaserverConfigLocal }
   ],
   bootstrap: [ AppComponent ]

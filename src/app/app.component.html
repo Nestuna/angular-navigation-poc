@@ -1,6 +1,18 @@
 <h1>{{ title }}</h1>
-<p> test mediaserver service on beta: {{ response }}</p>
-<p> test common service uuidv4: "{{ cs.uuidv4() }}"</p>
-<button mat-raised-button color="accent" (click)="openDialogs(true)">Open confirm dialog</button>
-<button mat-raised-button color="primary" (click)="openDialogs()">Open schema dialog</button>
+<p> {{ cs.translate('test mediaserver service on beta:') }} {{ response }}</p>
+<p> {{ cs.translate('test common service uuidv4:') }} "{{ cs.uuidv4() }}"</p>
+<p><button mat-raised-button color="accent" (click)="openDialogs(true)">{{ cs.translate('Open confirm dialog') }}</button></p>
+<p><button mat-raised-button color="primary" (click)="openDialogs()">{{ cs.translate('Open schema dialog') }}</button></p>
+<p>{{ cs.translate('Example schame form login') }}</p>
+<form (ngSubmit)="login();">
+	<div style="margin-bottom: 15px;">
+	  <schema-form-component [schema]="loginSchema" [formRoot]="loginForm"></schema-form-component>
+	</div>
+	<div style="margin-top: 30px;">
+	  <button mat-raised-button color="accent" type="submit">
+	    {{ cs.translate('Login') }}
+	  </button>
+	</div>
+</form>
+
 <router-outlet></router-outlet>
