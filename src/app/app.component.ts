@@ -42,7 +42,7 @@ export class AppComponent implements OnDestroy {
   }
 
   constructor (
-    private cs: UbicastAngularCommonService,
+    public cs: UbicastAngularCommonService,
     private aMSService: AngularMediaserverService,
     private dialogService: DialogService
   ) {
@@ -54,11 +54,11 @@ export class AppComponent implements OnDestroy {
     let sub;
     if (confirm) {
       sub = this.dialogService.confirm(
-        'Modal title',
-        'See a modal ?',
-        'Confirm',
-        'warn',
-        'Nope'
+        this.cs.translate('Modal title'),
+        this.cs.translate('See a modal ?'),
+        this.cs.translate('Confirm'),
+        this.cs.translate('warn'),
+        this.cs.translate('Nope')
       ).subscribe((result: boolean) => {
         console.log(result);
       });

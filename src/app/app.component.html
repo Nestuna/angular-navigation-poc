@@ -1,5 +1,6 @@
 <h1>{{ title }}</h1>
 <p> test mediaserver service on beta: {{ response }}</p>
+<p> test common service uuidv4: "{{ cs.uuidv4() }}"</p>
 <button mat-raised-button color="accent" (click)="openDialogs(true)">Open confirm dialog</button>
 <button mat-raised-button color="primary" (click)="openDialogs()">Open schema dialog</button>
 <router-outlet></router-outlet>
