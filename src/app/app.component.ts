@@ -28,7 +28,14 @@ export const loginSchema = {
 export class AppComponent implements OnDestroy {
   title = 'boilerplate-angular';
   response = '';
-
+  dialogChoices = [
+  'confirm',
+  'schema',
+  'message',
+  'video',
+  'multipleChoices',
+  'choices'
+  ];
   loginSchema: any = loginSchema;
   loginForm: FormGroup = new FormGroup({});
 
@@ -50,25 +57,65 @@ export class AppComponent implements OnDestroy {
       this.response = JSON.stringify(response);
     });
   }
-  openDialogs (confirm?: boolean) {
+  openDialogs (type?: string) {
     let sub;
-    if (confirm) {
-      sub = this.dialogService.confirm(
-        this.cs.translate('Modal title'),
-        this.cs.translate('See a modal ?'),
-        this.cs.translate('Confirm'),
-        this.cs.translate('warn'),
-        this.cs.translate('Nope')
-      ).subscribe((result: boolean) => {
-        console.log(result);
-      });
-    } else {
-      sub = this.dialogService.schema(
-        'Modal schema title',
-        loginSchema, {}, '*'
-      ).subscribe((result: boolean) => {
-        console.log(result);
-      });
+    switch (type) {
+      case 'confirm':
+        sub = this.dialogService.confirm(
+          this.cs.translate('Modal title'),
+          this.cs.translate('See a modal ?'),
+          this.cs.translate('Confirm'),
+          this.cs.translate('warn'),
+          this.cs.translate('Nope')
+        ).subscribe((result: boolean) => {
+          console.log(result);
+        });
+        break;
+      case 'schema':
+        sub = this.dialogService.schema(
+          'Modal schema title',
+          loginSchema, {}, '*'
+        ).subscribe((result: boolean) => {
+          console.log(result);
+        });
+        break;
+      case 'message':
+        sub = this.dialogService.message(
+          'Modal message title',
+          'text to display'
+        ).subscribe((result: boolean) => {
+          console.log(result);
+        });
+        break;
+      case 'video':
+        sub = this.dialogService.video(
+          'https://1884242627.rsc.cdn77.org/ubicasttv/r125f75d561385c4bu7lbk9ibn281j/audio_491_lbvdwha79y_clean.mp3'
+        ).subscribe((result: boolean) => {
+          console.log(result);
+        });
+        break;
+      case 'multipleChoices':
+        sub = this.dialogService.multipleChoices(
+          [
+            {'label': 'test 1', 'name': 'test1'},
+            {'label': 'test 2', 'name': 'test2'}
+          ],
+          'Modal multipleChoices title'
+        ).subscribe((result: Array<string>) => {
+          console.log(result);
+        });
+        break;
+      case 'choices':
+        sub = this.dialogService.choices(
+          [
+            {'label': 'test 1', 'name': 'test1'},
+            {'label': 'test 2', 'name': 'test2'}
+          ],
+          'Modal choices title'
+        ).subscribe((result: string) => {
+          console.log(result);
+        });
+        break;
     }
     this.subscriptions.push(sub);
   }
