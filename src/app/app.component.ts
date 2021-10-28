@@ -4,21 +4,7 @@ import { FormGroup } from '@angular/forms';
 import { AngularMediaserverService } from 'angular-mediaserver-service';
 import { UbicastAngularCommonService, DialogService } from 'ubicast-angular-common';
 
-export const loginSchema = {
-  'type': 'object',
-  'title': 'Please Login',
-  'properties': {
-    'password': {
-      'title': 'Password',
-      'type': 'password',
-      'required': true
-    },
-    'rememberMe': {
-      'title': 'Remember me!',
-      'type': 'boolean'
-    }
-  }
-};
+import { loginSchema, fullSchema } from './app.schema';
 
 @Component({
   selector: 'app-root',
@@ -28,6 +14,7 @@ export const loginSchema = {
 export class AppComponent implements OnDestroy {
   title = 'boilerplate-angular';
   response = '';
+  formValues = '';
   dialogChoices = [
   'confirm',
   'schema',
@@ -38,6 +25,9 @@ export class AppComponent implements OnDestroy {
   ];
   loginSchema: any = loginSchema;
   loginForm: FormGroup = new FormGroup({});
+
+  fullSchema: any = fullSchema;
+  fullForm: FormGroup = new FormGroup({});
 
   private subscriptions: Array<any> = [];
 
@@ -123,6 +113,11 @@ export class AppComponent implements OnDestroy {
     if (this.loginForm.valid) {
       console.log(this.loginForm.value['password']);
       console.log(this.loginForm.value['rememberMe']);
+    }
+  }
+  fullFormSubmit () {
+    if (this.fullForm.valid) {
+      this.formValues = JSON.stringify(this.fullForm.value, null, 2);
     }
   }
 }
