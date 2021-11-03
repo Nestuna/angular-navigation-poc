@@ -99,26 +99,24 @@ $ubicast-red: (
   )
 );
 
-/*** base theme colors **/
+/*** base theme colors variables **/
 $light-primary: mat.define-palette($ubicast-blue, 700, 50, 900);
 $light-danger:  mat.define-palette($ubicast-red);
 $light-success: mat.define-palette($ubicast-green, 700, 200, 900);
 $light-warning: mat.define-palette(mat.$amber-palette, A700);
-$light-grey:    mat.define-palette(mat.$grey-palette, 800, 400, 900);
+$light-grey:  mat.define-palette(mat.$grey-palette, 800, 200, 900);
 $light-yellow:  mat.define-palette(mat.$grey-palette, 400, A100, A400);
-$light-theme:   mat.define-light-theme($light-primary, $light-success, $light-danger);
 
+$light-foreground: $light-grey;
+$light-theme:   mat.define-light-theme($light-primary, $light-success, $light-danger);
 @include mat.all-component-themes($light-theme);
 
 /*####### Global ##########*/
-a {
-  color: mat.get-color-from-palette($light-primary);
-}
-/*** navigation ***/
-nav a.active {
-  color: mat.get-color-from-palette($light-primary);
-}
 
+/*** colors ***/
+.light-foreground {
+  background-color: mat.get-color-from-palette($light-foreground, 'lighter');
+}
 
 .color-blue {
   color: mat.get-color-from-palette($light-primary);
@@ -138,6 +136,18 @@ nav a.active {
 .color-yellow {
   color: mat.get-color-from-palette($light-yellow);
 }
+
+a {
+  text-decoration: none;
+  display: block;
+}
+
+/*** navigation ***/
+nav a.active {
+  color: mat.get-color-from-palette($light-primary);
+}
+
+
 /* snackbars */
 snack-bar-container.warning {
   background-color: mat.get-color-from-palette($light-warning);
@@ -170,7 +180,7 @@ snack-bar-container.custom-snack-bar {
     color: #000000;
 }
 
-/*** dark theme colors **/
+/*** dark theme colors variables **/
 $dark-primary: mat.define-palette(mat.$grey-palette, 800);
 $dark-accent:  mat.define-palette($ubicast-blue, 700, 500, 900);
 $dark-warn:    mat.define-palette($ubicast-red);

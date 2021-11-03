@@ -1,4 +1,4 @@
-export interface ChannelData {
+export interface Channel {
     oid: string,
     dbid: string,
     type: string,

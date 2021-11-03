@@ -1,7 +1,10 @@
 <div id="channels-list">
-    <app-channel-item
-        *ngFor="let channel of channelsList"
-        [item]="channel">
-    </app-channel-item>
+    <div class="channel-item"
+        *ngFor="let channel of channelsList">
+        <a
+            [routerLink]="['/channels']"
+            [queryParams]="{parent: channel.title}">
+            <app-channel-item [item]="channel"></app-channel-item>
+        </a>
+    </div>
 </div>
-

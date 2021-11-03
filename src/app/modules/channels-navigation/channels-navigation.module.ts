@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ChannelsListComponent } from './pages';
 import { MaterialModule } from 'src/app/material.module';
 import { ChannelItemComponent } from './components/channel-item/channel-item.component';
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     ChannelsListComponent,
@@ -10,7 +11,8 @@ import { ChannelItemComponent } from './components/channel-item/channel-item.com
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    RouterModule
   ],
   exports: [
     ChannelsListComponent

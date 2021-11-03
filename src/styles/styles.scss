@@ -14,9 +14,3 @@ body {
 .spacer {
   flex: 1 1 auto;
 }
-
-app-channel-item {
-  mat-card {
-    background-color: mat.get-color-from-palette($light-primary, 'lighter') !important;
-  }
-}
