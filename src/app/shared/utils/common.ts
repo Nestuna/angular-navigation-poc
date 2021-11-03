@@ -1,4 +1,3 @@
-import { Provider } from '@angular/core';
 import { AngularMediaserverService } from 'angular-mediaserver-service';
 
 

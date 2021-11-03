@@ -16,11 +16,13 @@ import {
   UbicastAngularCommonService,
 } from 'ubicast-angular-common';
 import { SharedModule } from './shared/shared.module';
-import { MaterialModule } from './material.module';
 import { ChannelsNavigationModule } from './modules/channels-navigation/channels-navigation.module';
+import { CoreModule } from '@core/core.module';
+import { environment } from 'src/environments/environment';
 
 class MediaserverConfigLocal {
-  baseUrl = 'https://beta.ubicast.net';
+  baseUrl = environment.apiUrl;
+  apiKey = environment.apiKey;
 }
 
 @NgModule({
@@ -34,8 +36,8 @@ class MediaserverConfigLocal {
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    CoreModule,
     SharedModule,
-    MaterialModule,
     AppRoutingModule,
     ChannelsNavigationModule,
   ],

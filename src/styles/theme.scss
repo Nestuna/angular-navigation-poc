@@ -1,4 +1,5 @@
 @use '~@angular/material' as mat;
+@include mat.core();
 @import '~material-icons/iconfont/material-icons.css';
 
 $ubicast-blue: (
@@ -97,14 +98,17 @@ $ubicast-red: (
     A700: white,
   )
 );
+
 /*** base theme colors **/
-$light-primary: mat.define-palette($ubicast-blue);
+$light-primary: mat.define-palette($ubicast-blue, 700, 50, 900);
 $light-danger:  mat.define-palette($ubicast-red);
 $light-success: mat.define-palette($ubicast-green, 700, 200, 900);
 $light-warning: mat.define-palette(mat.$amber-palette, A700);
 $light-grey:    mat.define-palette(mat.$grey-palette, 800, 400, 900);
 $light-yellow:  mat.define-palette(mat.$grey-palette, 400, A100, A400);
 $light-theme:   mat.define-light-theme($light-primary, $light-success, $light-danger);
+
+@include mat.all-component-themes($light-theme);
 
 /*####### Global ##########*/
 a {
@@ -165,8 +169,8 @@ snack-bar-container.custom-snack-bar {
 .metadata-title {
     color: #000000;
 }
+
 /*** dark theme colors **/
-@include mat.all-component-themes($light-theme);
 $dark-primary: mat.define-palette(mat.$grey-palette, 800);
 $dark-accent:  mat.define-palette($ubicast-blue, 700, 500, 900);
 $dark-warn:    mat.define-palette($ubicast-red);

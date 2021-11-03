@@ -1,0 +1,31 @@
+@use '@angular/material' as mat;
+
+::ng-deep mat-card {
+    width: 375px;
+    overflow: hidden;
+    img {
+        object-fit: cover;
+        height: 100px !important;
+        width: 100px !important;
+    }
+
+    mat-card-subtitle {
+        max-height: 60px;
+        overflow-y: hidden;
+    }
+
+    .channel-card-actions {
+        visibility: hidden;
+        button {
+            margin-left: 1em;
+        }
+    }
+
+    &:hover {
+        @include mat.elevation(6);
+        opacity: 90%;
+        .channel-card-actions {
+            visibility: visible;
+        }
+    }
+}

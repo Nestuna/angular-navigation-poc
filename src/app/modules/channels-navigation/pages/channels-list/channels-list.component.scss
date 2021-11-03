@@ -1,0 +1,13 @@
+#channels-list {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1em;
+    justify-content: space-between;
+    app-channel-item {
+        margin: 1em auto;
+        flex:1 1;
+        max-width: 400px;
+    }
+}

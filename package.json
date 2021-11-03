@@ -12,7 +12,8 @@
     "e2e-edge": "npx wdio run webdriverio/windows/edge.conf.js",
     "e2e-safari": "npx wdio run webdriverio/osx/safari.conf.js",
     "e2e-local": "npx wdio run webdriverio/local.conf.js",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "postinstall": "ngcc"
   },
   "private": true,
   "dependencies": {
@@ -46,7 +47,7 @@
     "@angular/localize": "^12.2.9",
     "@schematics/angular": "^12.2.12",
     "@types/jest": "latest",
-    "@types/node": "latest",
+    "@types/node": "^16.11.6",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
     "@wdio/browserstack-service": "latest",
@@ -55,10 +56,11 @@
     "@wdio/mocha-framework": "latest",
     "@wdio/spec-reporter": "latest",
     "chromedriver": "latest",
+    "dotenv": "^10.0.0",
     "eslint": "latest",
     "jest": "latest",
-    "typescript": "latest",
     "ts-node": "latest",
+    "typescript": "latest",
     "wdio-chromedriver-service": "latest",
     "wdio-wait-for": "latest"
   }

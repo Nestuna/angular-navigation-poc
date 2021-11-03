@@ -1,14 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChannelsComponent } from './pages';
-
-
+import { ChannelsListComponent } from './pages';
+import { MaterialModule } from 'src/app/material.module';
+import { ChannelItemComponent } from './components/channel-item/channel-item.component';
 @NgModule({
   declarations: [
-    ChannelsComponent
+    ChannelsListComponent,
+    ChannelItemComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialModule
   ],
+  exports: [
+    ChannelsListComponent
+  ]
 })
 export class ChannelsNavigationModule { }

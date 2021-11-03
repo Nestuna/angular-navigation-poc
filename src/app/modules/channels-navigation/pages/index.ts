@@ -1,2 +1,2 @@
-export * from './channels/channels.component';
+export * from './channels-list/channels-list.component';
 
