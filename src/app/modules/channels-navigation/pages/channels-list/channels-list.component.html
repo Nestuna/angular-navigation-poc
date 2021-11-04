@@ -1,9 +1,15 @@
+<app-navigation-stepper
+    [currentChannel]="currentChannel"
+    [parentChannel]="parentChannel">
+</app-navigation-stepper>
 <div id="channels-list">
+    <mat-spinner *ngIf="isLoading">
+    </mat-spinner>
     <div class="channel-item"
         *ngFor="let channel of channelsList">
         <a
             [routerLink]="['/channels']"
-            [queryParams]="{parent: channel.title}">
+            [queryParams]="{slug: channel.slug}">
             <app-channel-item [item]="channel"></app-channel-item>
         </a>
     </div>

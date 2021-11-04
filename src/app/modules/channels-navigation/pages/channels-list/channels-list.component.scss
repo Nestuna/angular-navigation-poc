@@ -3,11 +3,15 @@
     margin: auto;
     display: flex;
     flex-flow: row wrap;
-    gap: 1em;
     justify-content: space-between;
-
     .channel-item {
         margin: 1em;
-        flex:1 1;
+        flex:.5 1;
+        @media(max-width: 1090px) {
+            flex: 1 1;
+        }
+    }
+    mat-spinner {
+        margin: 5em auto;
     }
 }

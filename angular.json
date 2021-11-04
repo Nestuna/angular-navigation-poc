@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "boilerplate-angular": {
+    "ng-navigation-poc": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/boilerplate-angular",
+            "outputPath": "dist/ng-navigation-poc",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -78,10 +78,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "boilerplate-angular:build:production"
+              "browserTarget": "ng-navigation-poc:build:production"
             },
             "development": {
-              "browserTarget": "boilerplate-angular:build:development"
+              "browserTarget": "ng-navigation-poc:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -89,7 +89,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "boilerplate-angular:build"
+            "browserTarget": "ng-navigation-poc:build"
           }
         },
         "test": {
@@ -120,7 +120,7 @@
       }
     }
   },
-  "defaultProject": "boilerplate-angular",
+  "defaultProject": "ng-navigation-poc",
   "cli": {
     "defaultCollection": "@angular-eslint/schematics"
   }
