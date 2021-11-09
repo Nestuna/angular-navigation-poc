@@ -1,23 +1,27 @@
 #nav-header {
-    padding: 1em;
+    background-color: transparent;
+    padding: 1rem 1rem 0 1rem;
     display: flex;
-    .nav-control {
-        .navigation-title > * {
-            display: inline-block;
-
-       }
-        a {
-        margin-right: 1em;
-        }
+    mat-toolbar-row {
+        height: 40px
+    }
+    .navigation-title > * {
+        display: inline-block;
+    }
+    a {
+    margin-right: 1em;
     }
 
+    button {
+        margin-left: 1em;
+        mat-icon {
+            margin: 0 !important;
+        }
+    }
     button.toggle-view-button {
         min-width:fit-content !important;
         line-height:normal;
-        padding: .2em !important;
+        padding: .4em !important;
         box-sizing: content-box;
-    }
-    mat-icon {
-        margin: 0 !important;
     }
 }

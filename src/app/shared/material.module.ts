@@ -5,13 +5,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatDividerModule} from '@angular/material/divider';
 
 const modules = [
   MatButtonModule,
   MatCardModule,
   MatIconModule,
   MatToolbarModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatMenuModule,
+  MatDividerModule
 ];
 
 @NgModule({

@@ -2,8 +2,8 @@
     width: 240px;
     img.channel-thumb {
         object-fit: cover;
-        height: 130px !important;
-        width: 130px !important;
+        height: 100px !important;
+        width: 100px !important;
     }
     img.live-thumb {
         width: 100px;
@@ -13,21 +13,22 @@
     }
     img.video-thumb {
         max-width:271px;
-        max-height: 150px;
+        height: 170px;
         overflow: hidden;
+        margin-bottom: 0 !important;
     }
     mat-card-header {
         display: block !important;
         text-align: center;
-        margin: 1em auto;
         overflow: hidden;
     }
 
     mat-card-content {
         text-align: center;
-        font-size: 1.4em !important;
+        font-size: 1.2em !important;
         font-weight: 500;
-        height: 20px;
+        height: 35px;
+        margin-bottom: 0 !important;
         overflow: hidden;
     }
     mat-card-footer {

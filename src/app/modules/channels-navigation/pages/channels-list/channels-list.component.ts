@@ -17,7 +17,7 @@ import { Media } from '@shared/models/media';
 })
 export class ChannelsListComponent implements OnInit {
   currentView: string = 'thumb';
-  itemTypesDict: string[] = ['channels', 'videos', 'live_streams'];
+  itemTypes: string[] = ['channels', 'videos', 'live_streams'];
   parentChannel?: Channel;
   currentChannel?: Channel;
   channelPath: Channel[] = [];
@@ -35,7 +35,7 @@ export class ChannelsListComponent implements OnInit {
       }
       if (event instanceof NavigationEnd) {
         const parsed_url = this.router.parseUrl(event.url);
-        this.getChannelsAndMediasWithRouteParam(parsed_url);
+        this.getChannelsAndMediasWithRouteParams(parsed_url);
       }
     });
   }
@@ -45,8 +45,8 @@ export class ChannelsListComponent implements OnInit {
     if (this.channelsAndMedias.length === 0) this.getRootChannelsAndMedias();
   }
 
-  getChannelsAndMediasWithRouteParam(parsed_url: UrlTree): void {
-    const slug = parsed_url.queryParams.slug;
+  getChannelsAndMediasWithRouteParams(parsed_url: UrlTree): void {
+    const { slug, sort } = parsed_url.queryParams;
     this.getCurrentChannelContent(slug);
   }
 
@@ -76,15 +76,13 @@ export class ChannelsListComponent implements OnInit {
     this.msService
       .getChannelContent(undefined, parent_channel.slug)
       .subscribe((res) => {
-        let itemsList: Media[];
+        let itemsList: Channel[] | Media[];
         this.channelsAndMedias = [];
-        for (const itemType of this.itemTypesDict) {
+        for (const itemType of this.itemTypes) {
           itemsList = res[itemType] ? res[itemType] : [];
           this.channelsAndMedias.push(...itemsList);
         }
         this.isLoading = false;
       });
   }
-
-  onToggleView(event: any): void {}
 }

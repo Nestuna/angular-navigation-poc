@@ -1,5 +1,5 @@
-<div id="nav-header">
-    <div class="nav-control">
+<mat-toolbar id="nav-header">
+    <mat-toolbar-row>
         <div
             *ngIf="currentChannel; else root"
             class="navigation-title">
@@ -18,26 +18,51 @@
         <ng-template #root>
             <h1>Racine</h1>
         </ng-template>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
         <app-navigation-stepper
             [currentChannel]="currentChannel"
             [channelPath]="channelPath">
         </app-navigation-stepper>
-    </div>
-    <span class="spacer"></span>
-    <div class="view-control">
-        <button mat-stroked-button class="toggle-view-button">
-            <mat-icon
-                title="switch to grid view"
-                *ngIf="view=='list'"
-                (click)="onToggleViewClick('thumb')">
-                grid_view
-            </mat-icon>
-            <mat-icon
-                title="switch to list view"
-                *ngIf="view=='thumb'"
-                (click)="onToggleViewClick('list')">
-                view_list
-            </mat-icon>
-        </button>
-    </div>
-</div>
+        <span class="spacer"></span>
+        <div class="view-control">
+            <button
+                mat-button
+                [matMenuTriggerFor]="menu">
+                <mat-icon>sort</mat-icon>
+                <span>  TRIER PAR</span>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button
+                    mat-menu-item
+                    [routerLink]="['channels']"
+                    [queryParams]="{sort: '-creation_date'}">
+                    Date de création
+                </button>
+                <button
+                    mat-menu-item
+                    [routerLink]="['channels']"
+                    [queryParams]="{sort: 'title'}">
+                    Titre
+                </button>
+            </mat-menu>
+            <button
+                mat-button
+                class="toggle-view-button">
+                <mat-icon
+                    title="switch to grid view"
+                    *ngIf="view=='list'"
+                    (click)="onToggleViewClick('thumb')">
+                    grid_view
+                </mat-icon>
+                <mat-icon
+                    title="switch to list view"
+                    *ngIf="view=='thumb'"
+                    (click)="onToggleViewClick('list')">
+                    view_list
+                </mat-icon>
+            </button>
+        </div>
+
+    </mat-toolbar-row>
+</mat-toolbar>

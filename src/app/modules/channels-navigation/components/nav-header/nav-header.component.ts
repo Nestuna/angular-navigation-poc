@@ -9,9 +9,9 @@ import { Channel } from '@shared/models/channel';
 export class NavHeaderComponent implements OnInit {
   @Input() currentChannel?: Channel;
   @Input() channelPath: Channel[] = [];
-
   @Input() view!: string;
   @Output() viewChange = new EventEmitter<string>();;
+  @Output() sort = new EventEmitter<string>();
 
   constructor() {
   }
@@ -23,5 +23,9 @@ export class NavHeaderComponent implements OnInit {
   onToggleViewClick(newView: string):void {
     this.view = newView;
     this.viewChange.emit(this.view);
+  }
+
+  selectSort(newSort: string):void {
+    this.sort.emit(newSort)
   }
 }

@@ -3,6 +3,7 @@
 ::ng-deep mat-card.list {
     min-width: 430px;
     overflow: hidden;
+
     &:hover {
         .channel-card-actions {
             visibility: visible;
@@ -27,6 +28,9 @@
         border-radius: 0 !important;
     }
 
+    mat-card-title {
+        font-size: 1.3em !important;
+    }
     mat-card-subtitle {
         max-height: 35px;
         max-width: 60%;
