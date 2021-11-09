@@ -1,6 +1,6 @@
-@use '~@angular/material' as mat;
+@use "~@angular/material" as mat;
 @include mat.core();
-@import '~material-icons/iconfont/material-icons.css';
+@import "~material-icons/iconfont/material-icons.css";
 
 $ubicast-blue: (
   50: #e4eef7,
@@ -32,7 +32,7 @@ $ubicast-blue: (
     A200: white,
     A400: white,
     A700: white,
-  )
+  ),
 );
 $ubicast-green: (
   50: #e0f1ea,
@@ -64,7 +64,7 @@ $ubicast-green: (
     A200: white,
     A400: white,
     A700: white,
-  )
+  ),
 );
 $ubicast-red: (
   50: #fbe5e8,
@@ -96,26 +96,34 @@ $ubicast-red: (
     A200: white,
     A400: white,
     A700: white,
-  )
+  ),
 );
 
 /*** base theme colors variables **/
-$light-primary: mat.define-palette($ubicast-blue, 700, 50, 900);
-$light-danger:  mat.define-palette($ubicast-red);
+$light-primary: mat.define-palette($ubicast-blue, 700, 200, 900);
+$light-danger: mat.define-palette($ubicast-red);
 $light-success: mat.define-palette($ubicast-green, 700, 200, 900);
 $light-warning: mat.define-palette(mat.$amber-palette, A700);
-$light-grey:  mat.define-palette(mat.$grey-palette, 800, 200, 900);
-$light-yellow:  mat.define-palette(mat.$grey-palette, 400, A100, A400);
+$light-foreground: mat.define-palette(mat.$grey-palette, 200, 100, 500);
 
-$light-foreground: $light-grey;
-$light-theme:   mat.define-light-theme($light-primary, $light-success, $light-danger);
+$light-grey: mat.define-palette(mat.$grey-palette, 800, 200, 900);
+$light-yellow: mat.define-palette(mat.$grey-palette, 400, A100, A400);
+
+$light-theme: mat.define-light-theme(
+  $light-primary,
+  $light-success,
+  $light-danger
+);
 @include mat.all-component-themes($light-theme);
 
 /*####### Global ##########*/
 
 /*** colors ***/
 .light-foreground {
-  background-color: mat.get-color-from-palette($light-foreground, 'lighter');
+  background-color: mat.get-color-from-palette($light-foreground);
+  &:hover {
+    background-color: mat.get-color-from-palette($light-foreground, "lighter");
+  }
 }
 
 .color-blue {
@@ -137,13 +145,16 @@ $light-theme:   mat.define-light-theme($light-primary, $light-success, $light-da
   color: mat.get-color-from-palette($light-yellow);
 }
 
+
+/* links and buttons */
 a {
   text-decoration: none;
-  display: block;
+  color: mat.get-color-from-palette($light-primary);
+  &:hover {
+    color: mat.get-color-from-palette($light-primary, "lighter");
+  }
 }
-
-/*** navigation ***/
-nav a.active {
+a.active {
   color: mat.get-color-from-palette($light-primary);
 }
 
@@ -177,18 +188,18 @@ snack-bar-container.custom-snack-bar {
   border-top: 1px solid #eee;
 }
 .metadata-title {
-    color: #000000;
+  color: #000000;
 }
 
 /*** dark theme colors variables **/
 $dark-primary: mat.define-palette(mat.$grey-palette, 800);
-$dark-accent:  mat.define-palette($ubicast-blue, 700, 500, 900);
-$dark-warn:    mat.define-palette($ubicast-red);
-$dark-theme:   mat.define-dark-theme($dark-primary, $dark-accent, $dark-warn);
+$dark-accent: mat.define-palette($ubicast-blue, 700, 500, 900);
+$dark-warn: mat.define-palette($ubicast-red);
+$dark-theme: mat.define-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
 $dark-font-success: mat.define-palette(mat.$green-palette, A700);
-$dark-font-accent:  mat.define-palette($ubicast-blue, A700);
-$dark-font-warn:    mat.define-palette($ubicast-red, A700);
+$dark-font-accent: mat.define-palette($ubicast-blue, A700);
+$dark-font-warn: mat.define-palette($ubicast-red, A700);
 
 :root {
   --light-grey: #{mat.get-color-from-palette($light-grey)};
@@ -300,6 +311,6 @@ $dark-font-warn:    mat.define-palette($ubicast-red, A700);
   }
   .metadata-title,
   .mat-menu-item {
-    color: white!important;
+    color: white !important;
   }
 }

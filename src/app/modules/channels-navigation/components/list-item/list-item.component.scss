@@ -1,0 +1,62 @@
+@use '@angular/material' as mat;
+
+::ng-deep mat-card.list {
+    min-width: 430px;
+    overflow: hidden;
+    &:hover {
+        .channel-card-actions {
+            visibility: visible;
+        }
+    }
+
+    img.channel-thumb {
+        object-fit: cover;
+        height: 100px !important;
+        width: 100px !important;
+        margin-bottom: 1em;
+    }
+    img.live-thumb {
+        width: 100px;
+        height: 100px;
+        border-radius: 0 !important;
+        margin: 0 auto;
+    }
+    img.video-thumb {
+        width: 240px;
+        height: 135px;
+        border-radius: 0 !important;
+    }
+
+    mat-card-subtitle {
+        max-height: 35px;
+        max-width: 60%;
+        overflow-y: hidden;
+        @media screen and (max-width: 600px){
+            display:none !important;
+        };
+    }
+
+    @media screen and (max-width: 700px) {
+        min-width: 250px;
+        font-size: .5rem !important;
+        img.channel-thumb {
+            height: 50px !important;
+            width: 50px !important;
+        }
+        img.live-thumb {
+            height: 60px !important;
+            width: 45px !important;
+        }
+        img.video-thumb {
+            height: 47px !important;
+            width: 84px !important;
+        }
+        mat-card-title {
+            font-size: 1rem !important;
+        }
+        mat-card-subtitle {
+            display:none !important;
+        }
+    }
+}
+

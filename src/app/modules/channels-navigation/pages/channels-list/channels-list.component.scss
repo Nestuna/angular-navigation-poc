@@ -3,13 +3,19 @@
     margin: auto;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
     .channel-item {
-        margin: 1em;
+        margin: .5em;
         flex:.5 1;
-        @media(max-width: 1090px) {
+        @media(max-width: 1080px) {
             flex: 1 1;
         }
+        &.list-view {
+            max-width: 100%;
+        }
+        &.thumb-view {
+            max-width: 275px;
+        }
+
     }
     mat-spinner {
         margin: 5em auto;

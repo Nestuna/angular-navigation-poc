@@ -1,0 +1,57 @@
+::ng-deep mat-card.thumb {
+    width: 240px;
+    img.channel-thumb {
+        object-fit: cover;
+        height: 130px !important;
+        width: 130px !important;
+    }
+    img.live-thumb {
+        width: 100px;
+        height: 100px;
+        border-radius: 0 !important;
+        margin: 0 auto;
+    }
+    img.video-thumb {
+        max-width:271px;
+        max-height: 150px;
+        overflow: hidden;
+    }
+    mat-card-header {
+        display: block !important;
+        text-align: center;
+        margin: 1em auto;
+        overflow: hidden;
+    }
+
+    mat-card-content {
+        text-align: center;
+        font-size: 1.4em !important;
+        font-weight: 500;
+        height: 20px;
+        overflow: hidden;
+    }
+    mat-card-footer {
+        text-align: right;
+        padding: 0 1em 1em 0;
+    }
+
+    @media screen and (max-width: 700px) {
+        width: 175px;
+        font-size: .7rem !important;
+        img.channel-thumb {
+            height: 50px !important;
+            width: 50px !important;
+        }
+        img.live-thumb {
+            height: 60px !important;
+            width: 45px !important;
+        }
+        img.video-thumb {
+            height: 113px !important;
+            width: 206px !important;
+        }
+        mat-card-content {
+            height: 20px;
+        }
+    }
+}

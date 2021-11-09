@@ -1,0 +1,43 @@
+<div id="nav-header">
+    <div class="nav-control">
+        <div
+            *ngIf="currentChannel; else root"
+            class="navigation-title">
+            <a
+                mat-mini-fab
+                class="mat-elevation-z0"
+                color="primary"
+                [routerLink]="['/channels']"
+                [queryParams]="{slug: channelPath[channelPath.length - 1]?.slug}">
+                <mat-icon>arrow_back</mat-icon>
+            </a>
+            <h1>
+                {{ currentChannel.title }}
+            </h1>
+        </div>
+        <ng-template #root>
+            <h1>Racine</h1>
+        </ng-template>
+        <app-navigation-stepper
+            [currentChannel]="currentChannel"
+            [channelPath]="channelPath">
+        </app-navigation-stepper>
+    </div>
+    <span class="spacer"></span>
+    <div class="view-control">
+        <button mat-stroked-button class="toggle-view-button">
+            <mat-icon
+                title="switch to grid view"
+                *ngIf="view=='list'"
+                (click)="onToggleViewClick('thumb')">
+                grid_view
+            </mat-icon>
+            <mat-icon
+                title="switch to list view"
+                *ngIf="view=='thumb'"
+                (click)="onToggleViewClick('list')">
+                view_list
+            </mat-icon>
+        </button>
+    </div>
+</div>

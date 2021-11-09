@@ -1,16 +1,38 @@
-<app-navigation-stepper
+<app-nav-header
     [currentChannel]="currentChannel"
-    [parentChannel]="parentChannel">
-</app-navigation-stepper>
-<div id="channels-list">
-    <mat-spinner *ngIf="isLoading">
-    </mat-spinner>
-    <div class="channel-item"
-        *ngFor="let channel of channelsList">
+    [channelPath]="channelPath"
+    [(view)]="currentView">
+</app-nav-header>
+<div id="channels-list" >
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <div
+        class="channel-item"
+        [class]="currentView == 'thumb' ? 'thumb-view' : 'list-view'"
+        *ngFor="let item of channelsAndMedias">
         <a
+            *ngIf="item.type == 'c'"
             [routerLink]="['/channels']"
-            [queryParams]="{slug: channel.slug}">
-            <app-channel-item [item]="channel"></app-channel-item>
+            [queryParams]="{slug: item.slug}">
+            <app-item
+                [view]="currentView"
+                [item]="item">
+            </app-item>
+        </a>
+        <a
+            *ngIf="item.type == 'v'"
+            href="https://beta.ubicast.net/videos/{{ item.slug }}">
+            <app-item
+                [view]="currentView"
+                [item]="item">
+            </app-item>
+        </a>
+        <a
+            *ngIf="item.type == 'l'"
+            href="https://beta.ubicast.net/lives/{{ item.slug }}">
+            <app-item
+                [view]="currentView"
+                [item]="item">
+            </app-item>
         </a>
     </div>
 </div>

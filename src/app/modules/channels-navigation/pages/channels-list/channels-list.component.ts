@@ -1,16 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { AngularMediaserverService } from 'angular-mediaserver-service';
-import { Channel, SubChannel } from '@shared/models/channel';
+import { Channel } from '@shared/models/channel';
 import {
   Router,
   Event,
   NavigationStart,
   NavigationEnd,
-  NavigationError,
   UrlTree,
-  ActivatedRoute,
 } from '@angular/router';
-import { map } from 'rxjs';
+import { Media } from '@shared/models/media';
 
 @Component({
   selector: 'app-channels',
@@ -18,9 +16,12 @@ import { map } from 'rxjs';
   styleUrls: ['./channels-list.component.scss'],
 })
 export class ChannelsListComponent implements OnInit {
+  currentView: string = 'thumb';
+  itemTypesDict: string[] = ['channels', 'videos', 'live_streams'];
   parentChannel?: Channel;
   currentChannel?: Channel;
-  channelsList: SubChannel[] = [];
+  channelPath: Channel[] = [];
+  channelsAndMedias: Channel[] | Media[] = [];
   isLoading: boolean = false;
 
   constructor(
@@ -30,61 +31,60 @@ export class ChannelsListComponent implements OnInit {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
         this.isLoading = true;
-        console.log('Route change detected');
-        this.channelsList = [];
-
+        this.channelsAndMedias = [];
       }
       if (event instanceof NavigationEnd) {
         const parsed_url = this.router.parseUrl(event.url);
-        this.getChannelsListWithRouteParam(parsed_url);
+        this.getChannelsAndMediasWithRouteParam(parsed_url);
       }
     });
   }
 
   ngOnInit(): void {
-    this.isLoading = true
-    if (this.channelsList.length === 0) this.getRootChannelsList();
+    this.isLoading = true;
+    if (this.channelsAndMedias.length === 0) this.getRootChannelsAndMedias();
   }
 
-  getChannelsListWithRouteParam(parsed_url: UrlTree): void {
+  getChannelsAndMediasWithRouteParam(parsed_url: UrlTree): void {
     const slug = parsed_url.queryParams.slug;
-    this.setCurrentAndParentChannel(slug);
+    this.getCurrentChannelContent(slug);
   }
 
-  setCurrentAndParentChannel(slug: string): void {
+  getCurrentChannelContent(slug: string): void {
     if (slug) {
-      if (this.parentChannel) {
-        if (slug === this.parentChannel.slug) {
-          this.currentChannel = this.parentChannel;
-          this.parentChannel = undefined;
-          this.getSubChannelsList(this.currentChannel);
-        }
-      } else {
-        this.msService.getChannel(undefined, slug).subscribe((res) => {
-          this.parentChannel = this.currentChannel;
+      this.msService
+        .getChannel(undefined, slug, undefined, undefined, true)
+        .subscribe((res) => {
           this.currentChannel = res.info;
-          this.getSubChannelsList(res.info);
+          this.channelPath = res.info.path;
+          this.getChannelsAndMedias(res.info);
         });
-      }
     } else {
-      this.currentChannel = this.parentChannel = undefined;
-      this.getRootChannelsList();
+      this.currentChannel =undefined;
+      this.getRootChannelsAndMedias();
     }
   }
 
-  getRootChannelsList(): void {
+  getRootChannelsAndMedias(): void {
     this.msService.getChannelContent().subscribe((res) => {
-      this.channelsList = res.channels;
+      this.channelsAndMedias = res.channels;
       this.isLoading = false;
     });
   }
 
-  getSubChannelsList(parent_channel: Channel): void {
+  getChannelsAndMedias(parent_channel: Channel): void {
     this.msService
       .getChannelContent(undefined, parent_channel.slug)
       .subscribe((res) => {
-        this.channelsList = res.channels;
+        let itemsList: Media[];
+        this.channelsAndMedias = [];
+        for (const itemType of this.itemTypesDict) {
+          itemsList = res[itemType] ? res[itemType] : [];
+          this.channelsAndMedias.push(...itemsList);
+        }
         this.isLoading = false;
       });
   }
+
+  onToggleView(event: any): void {}
 }

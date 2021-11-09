@@ -1,0 +1,23 @@
+#nav-header {
+    padding: 1em;
+    display: flex;
+    .nav-control {
+        .navigation-title > * {
+            display: inline-block;
+
+       }
+        a {
+        margin-right: 1em;
+        }
+    }
+
+    button.toggle-view-button {
+        min-width:fit-content !important;
+        line-height:normal;
+        padding: .2em !important;
+        box-sizing: content-box;
+    }
+    mat-icon {
+        margin: 0 !important;
+    }
+}
