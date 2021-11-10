@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Channel } from '@shared/models/channel';
+import { Channel } from 'angular-mediaserver-service';
+;
 
 @Component({
   selector: 'app-navigation-stepper',

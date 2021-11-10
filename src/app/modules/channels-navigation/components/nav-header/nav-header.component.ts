@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { Channel } from '@shared/models/channel';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Channel } from 'angular-mediaserver-service';
 
 @Component({
   selector: 'app-nav-header',
@@ -10,22 +11,22 @@ export class NavHeaderComponent implements OnInit {
   @Input() currentChannel?: Channel;
   @Input() channelPath: Channel[] = [];
   @Input() view!: string;
-  @Output() viewChange = new EventEmitter<string>();;
-  @Output() sort = new EventEmitter<string>();
+  @Output() viewChange = new EventEmitter<string>();
 
-  constructor() {
-  }
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-  }
-
-  onToggleViewClick(newView: string):void {
+  onToggleViewClick(newView: string): void {
     this.view = newView;
     this.viewChange.emit(this.view);
   }
 
-  selectSort(newSort: string):void {
-    this.sort.emit(newSort)
+  selectSort(newSort: string): void {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { sort: newSort},
+      queryParamsHandling: 'merge'
+    })
   }
 }

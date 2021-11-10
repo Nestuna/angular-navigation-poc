@@ -18,9 +18,9 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "latest",
-    "@angular/cdk": "^12.2.12",
+    "@angular/cdk": "latest",
     "@angular/common": "latest",
-    "@angular/compiler": "latest",
+    "@angular/compiler": "^13.0.0",
     "@angular/core": "latest",
     "@angular/forms": "latest",
     "@angular/material": "latest",
@@ -28,6 +28,7 @@
     "@angular/platform-browser-dynamic": "latest",
     "@angular/router": "latest",
     "angular-mediaserver-service": "file:submodules/common-angular-librairies/dist/angular-mediaserver-service/angular-mediaserver-service-0.0.1.tgz",
+    "material": "latest",
     "material-icons": "latest",
     "rxjs": "latest",
     "tslib": "latest",
@@ -36,7 +37,7 @@
   },
   "devDependencies": {
     "@angular-builders/jest": "latest",
-    "@angular-devkit/build-angular": "latest",
+    "@angular-devkit/build-angular": "^13.0.1",
     "@angular-eslint/builder": "latest",
     "@angular-eslint/eslint-plugin": "latest",
     "@angular-eslint/eslint-plugin-template": "latest",

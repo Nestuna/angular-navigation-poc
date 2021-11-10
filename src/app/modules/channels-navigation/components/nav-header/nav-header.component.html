@@ -35,14 +35,12 @@
             <mat-menu #menu="matMenu">
                 <button
                     mat-menu-item
-                    [routerLink]="['channels']"
-                    [queryParams]="{sort: '-creation_date'}">
+                    (click)="selectSort('creation_date')">
                     Date de création
                 </button>
                 <button
                     mat-menu-item
-                    [routerLink]="['channels']"
-                    [queryParams]="{sort: 'title'}">
+                    (click)="selectSort('title')">
                     Titre
                 </button>
             </mat-menu>

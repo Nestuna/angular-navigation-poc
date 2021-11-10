@@ -1,6 +1,6 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
-import { AngularMediaserverService } from 'angular-mediaserver-service';
-import { Channel } from '@shared/models/channel';
+import { Component,  OnInit } from '@angular/core';
+import { Channel, Media, AngularMediaserverService } from 'angular-mediaserver-service';
+import {  } from 'angular-mediaserver-service'
 import {
   Router,
   Event,
@@ -8,7 +8,6 @@ import {
   NavigationEnd,
   UrlTree,
 } from '@angular/router';
-import { Media } from '@shared/models/media';
 
 @Component({
   selector: 'app-channels',
@@ -35,7 +34,7 @@ export class ChannelsListComponent implements OnInit {
       }
       if (event instanceof NavigationEnd) {
         const parsed_url = this.router.parseUrl(event.url);
-        this.getChannelsAndMediasWithRouteParams(parsed_url);
+        this.channelsAndMediasWithRouteParams(parsed_url);
       }
     });
   }
@@ -45,7 +44,7 @@ export class ChannelsListComponent implements OnInit {
     if (this.channelsAndMedias.length === 0) this.getRootChannelsAndMedias();
   }
 
-  getChannelsAndMediasWithRouteParams(parsed_url: UrlTree): void {
+  channelsAndMediasWithRouteParams(parsed_url: UrlTree): void {
     const { slug, sort } = parsed_url.queryParams;
     this.getCurrentChannelContent(slug);
   }
@@ -53,11 +52,12 @@ export class ChannelsListComponent implements OnInit {
   getCurrentChannelContent(slug: string): void {
     if (slug) {
       this.msService
-        .getChannel(undefined, slug, undefined, undefined, true)
+        .channel({slug,  full: true})
         .subscribe((res) => {
-          this.currentChannel = res.info;
-          this.channelPath = res.info.path;
-          this.getChannelsAndMedias(res.info);
+          console.log(res);
+          this.currentChannel = res;
+          this.channelPath = res.path ? res.path : [];
+          this.getChannelsAndMedias(res);
         });
     } else {
       this.currentChannel =undefined;
@@ -66,7 +66,7 @@ export class ChannelsListComponent implements OnInit {
   }
 
   getRootChannelsAndMedias(): void {
-    this.msService.getChannelContent().subscribe((res) => {
+    this.msService.channelContent({}).subscribe((res) => {
       this.channelsAndMedias = res.channels;
       this.isLoading = false;
     });
@@ -74,12 +74,13 @@ export class ChannelsListComponent implements OnInit {
 
   getChannelsAndMedias(parent_channel: Channel): void {
     this.msService
-      .getChannelContent(undefined, parent_channel.slug)
+      .channelContent({ parent_slug: parent_channel.slug } )
       .subscribe((res) => {
         let itemsList: Channel[] | Media[];
         this.channelsAndMedias = [];
         for (const itemType of this.itemTypes) {
-          itemsList = res[itemType] ? res[itemType] : [];
+          console.log(res);
+          itemsList = []
           this.channelsAndMedias.push(...itemsList);
         }
         this.isLoading = false;
