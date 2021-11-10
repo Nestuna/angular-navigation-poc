@@ -1,12 +1,12 @@
 import { Component,  OnInit } from '@angular/core';
-import { Channel, Media, AngularMediaserverService } from 'angular-mediaserver-service';
-import {  } from 'angular-mediaserver-service'
+import { Channel, Media, AngularMediaserverService, SearchOrder, commonAllMediasType } from 'angular-mediaserver-service';
 import {
   Router,
   Event,
   NavigationStart,
   NavigationEnd,
   UrlTree,
+  ActivatedRoute,
 } from '@angular/router';
 
 @Component({
@@ -16,7 +16,6 @@ import {
 })
 export class ChannelsListComponent implements OnInit {
   currentView: string = 'thumb';
-  itemTypes: string[] = ['channels', 'videos', 'live_streams'];
   parentChannel?: Channel;
   currentChannel?: Channel;
   channelPath: Channel[] = [];
@@ -25,7 +24,8 @@ export class ChannelsListComponent implements OnInit {
 
   constructor(
     private msService: AngularMediaserverService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
@@ -33,8 +33,7 @@ export class ChannelsListComponent implements OnInit {
         this.channelsAndMedias = [];
       }
       if (event instanceof NavigationEnd) {
-        const parsed_url = this.router.parseUrl(event.url);
-        this.channelsAndMediasWithRouteParams(parsed_url);
+        this.channelsAndMediasWithRouteParams();
       }
     });
   }
@@ -44,12 +43,15 @@ export class ChannelsListComponent implements OnInit {
     if (this.channelsAndMedias.length === 0) this.getRootChannelsAndMedias();
   }
 
-  channelsAndMediasWithRouteParams(parsed_url: UrlTree): void {
-    const { slug, sort } = parsed_url.queryParams;
-    this.getCurrentChannelContent(slug);
+  channelsAndMediasWithRouteParams(): void {
+    const { slug } = this.route.snapshot.params;
+    const { sort } = this.route.snapshot.queryParams;
+    console.log(this.route.snapshot);
+
+    this.getCurrentChannelContent(slug, sort);
   }
 
-  getCurrentChannelContent(slug: string): void {
+  getCurrentChannelContent(slug: string, sort: SearchOrder): void {
     if (slug) {
       this.msService
         .channel({slug,  full: true})
@@ -57,31 +59,28 @@ export class ChannelsListComponent implements OnInit {
           console.log(res);
           this.currentChannel = res;
           this.channelPath = res.path ? res.path : [];
-          this.getChannelsAndMedias(res);
+          this.getChannelsAndMedias(res, sort);
         });
     } else {
-      this.currentChannel =undefined;
-      this.getRootChannelsAndMedias();
+      this.currentChannel = undefined;
+      this.getRootChannelsAndMedias(sort);
     }
   }
 
-  getRootChannelsAndMedias(): void {
-    this.msService.channelContent({}).subscribe((res) => {
+  getRootChannelsAndMedias(sort?: SearchOrder): void {
+    this.msService.channelContent({ order_by: sort }).subscribe((res) => {
       this.channelsAndMedias = res.channels;
       this.isLoading = false;
     });
   }
 
-  getChannelsAndMedias(parent_channel: Channel): void {
+  getChannelsAndMedias(parent_channel: Channel, sort?: SearchOrder): void {
     this.msService
-      .channelContent({ parent_slug: parent_channel.slug } )
+      .channelContent({ parent_slug: parent_channel.slug, order_by: sort } )
       .subscribe((res) => {
         let itemsList: Channel[] | Media[];
-        this.channelsAndMedias = [];
-        for (const itemType of this.itemTypes) {
-          console.log(res);
-          itemsList = []
-          this.channelsAndMedias.push(...itemsList);
+        for (const items of Object.values(res)) {
+          this.channelsAndMedias.push(...items);
         }
         this.isLoading = false;
       });

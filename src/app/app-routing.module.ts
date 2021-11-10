@@ -4,7 +4,8 @@ import { ChannelsListComponent } from '@modules/channels-navigation/pages';
 
 const routes: Routes = [
   { path: '', redirectTo: '/channels', pathMatch: 'full' },
-  { path: 'channels', component: ChannelsListComponent},
+  { path: 'channels', component: ChannelsListComponent },
+  { path: 'channels/:slug', component: ChannelsListComponent },
 ];
 
 @NgModule({

@@ -1,8 +1,25 @@
-<app-list-item
-    *ngIf="view == 'list'"
-    [item]="item">
-</app-list-item>
-<app-thumb-item
-    *ngIf="view == 'thumb'"
-    [item]="item">
-</app-thumb-item>
+<a
+    *ngIf="item.type == 'c'; else media"
+    [routerLink]="itemUrl">
+    <app-list-item
+        *ngIf="view == 'list'"
+        [item]="item">
+    </app-list-item>
+    <app-thumb-item
+        *ngIf="view == 'thumb'"
+        [item]="item">
+    </app-thumb-item>
+
+</a>
+<ng-template #media>
+    <a [href]="itemUrl + '/' + item.slug">
+        <app-list-item
+            *ngIf="view == 'list'"
+            [item]="item">
+        </app-list-item>
+        <app-thumb-item
+            *ngIf="view == 'thumb'"
+            [item]="item">
+        </app-thumb-item>
+    </a>
+</ng-template>

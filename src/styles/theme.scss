@@ -1,4 +1,4 @@
-@use "~@angular/material" as mat;
+@use "@angular/material" as mat;
 @include mat.core();
 @import "~material-icons/iconfont/material-icons.css";
 
@@ -147,6 +147,12 @@ $light-theme: mat.define-light-theme(
 
 
 /* links and buttons */
+app-header {
+  a {
+    color: white;
+  }
+}
+
 a {
   text-decoration: none;
   color: mat.get-color-from-palette($light-primary);

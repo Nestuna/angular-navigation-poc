@@ -20,7 +20,7 @@ import { ChannelsNavigationModule } from './modules/channels-navigation/channels
 import { CoreModule } from '@core/core.module';
 import { environment } from 'src/environments/environment';
 
-class MediaserverConfigLocal {
+export class MediaserverConfigLocal {
   baseUrl = environment.apiUrl;
   apiKey = environment.apiKey;
 }

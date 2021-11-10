@@ -3,16 +3,16 @@
     width: 100%;
     display: flex;
     flex-flow: row wrap;
-    .channel-item {
+    .item-container {
         margin: .5em;
         flex:.5 1;
         @media(max-width: 1080px) {
             flex: 1 1;
         }
-        &.list-view {
+        &.list {
             max-width: 100%;
         }
-        &.thumb-view {
+        &.thumb {
             max-width: 275px;
         }
 

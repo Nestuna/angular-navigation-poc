@@ -35,12 +35,12 @@
             <mat-menu #menu="matMenu">
                 <button
                     mat-menu-item
-                    (click)="selectSort('creation_date')">
+                    (click)="selectSort('creation_date-desc')">
                     Date de création
                 </button>
                 <button
                     mat-menu-item
-                    (click)="selectSort('title')">
+                    (click)="selectSort('title-asc')">
                     Titre
                 </button>
             </mat-menu>
@@ -61,6 +61,5 @@
                 </mat-icon>
             </button>
         </div>
-
     </mat-toolbar-row>
 </mat-toolbar>
