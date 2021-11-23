@@ -8,6 +8,10 @@ import { ListItemComponent } from './components/list-item/list-item.component';
 import { NavHeaderComponent } from './components/nav-header/nav-header.component';
 import { ThumbItemComponent } from './components/thumb-item/thumb-item.component';
 import { ItemComponent } from './components/item/item.component';
+import { ToggleViewButtonComponent } from './components/toggle-view-button/toggle-view-button.component';
+import { TableViewComponent } from './components/table-view/table-view.component';
+import { VideoComponent } from './pages/video/video.component';
+import { LiveComponent } from './pages/live/live.component';
 @NgModule({
   declarations: [
     ChannelsListComponent,
@@ -15,8 +19,12 @@ import { ItemComponent } from './components/item/item.component';
     NavigationStepperComponent,
     NavHeaderComponent,
     ThumbItemComponent,
-    ItemComponent
-  ],
+    ItemComponent,
+    ToggleViewButtonComponent,
+    TableViewComponent,
+    VideoComponent,
+    LiveComponent
+    ],
   imports: [
     CommonModule,
     MaterialModule,

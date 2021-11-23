@@ -3,25 +3,18 @@
     padding: 1rem 1rem 0 1rem;
     display: flex;
     mat-toolbar-row {
-        height: 40px
+        height: 50px
     }
     .navigation-title > * {
         display: inline-block;
     }
     a {
-    margin-right: 1em;
+        margin-right: 1em;
     }
 
-    button {
-        margin-left: 1em;
-        mat-icon {
-            margin: 0 !important;
+    @media screen and (max-width: 700px) {
+        app-navigation-stepper, .button-icon-label {
+            display: none;
         }
-    }
-    button.toggle-view-button {
-        min-width:fit-content !important;
-        line-height:normal;
-        padding: .4em !important;
-        box-sizing: content-box;
     }
 }

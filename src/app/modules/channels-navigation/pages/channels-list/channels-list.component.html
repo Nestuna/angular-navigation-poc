@@ -4,15 +4,35 @@
     [(view)]="currentView">
 </app-nav-header>
 <mat-divider></mat-divider>
-<div id="channels-list" >
-    <mat-spinner *ngIf="isLoading"></mat-spinner>
+<div id="channels-list-container">
     <div
-        class="item-container"
-        [class]="currentView"
-        *ngFor="let item of channelsAndMedias">
-        <app-item
-            [item]="item"
-            [view]="currentView">
-        </app-item>
+        *ngIf="currentView == 'table'; else items"
+        class="table-container">
+        <app-table-view [items]="channelsAndMedias"></app-table-view>
     </div>
+    <ng-template #items>
+        <div
+            class="item-container"
+            [class]="currentView"
+            *ngFor="let item of itemsToShow">
+            <app-item
+                [item]="item"
+                [view]="currentView">
+            </app-item>
+        </div>
+    </ng-template>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+</div>
+<div class="pagination-container" *ngIf="pagesTotal > 1">
+    <button mat-stroked-button
+        [disabled]="currentPage === 0"
+        (click)="previousPage()">
+        Precedent
+    </button>
+    <button mat-raised-button
+        color="primary"
+        [disabled]="currentPage === pagesTotal - 1"
+        (click)="nextPage()">
+        Suivant
+    </button>
 </div>

@@ -14,6 +14,36 @@ body {
   flex: 1 1 auto;
 }
 
-html, body { height: 100%; }
+html, body { height: 100%; width: 100%;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.card-elevation-hover {
+  &:hover {
+      background-color: mat.get-color-from-palette($light-foreground, "lighter");
+      @include mat.elevation(3)
+    }
+}
+
+.mat-header-cell {
+  background-color: mat.get-color-from-palette($light-primary);
+  color: white;
+}
+.mat-row {
+  background-color: mat.get-color-from-palette($light-foreground);
+  &:hover {
+    background-color: white;
+    cursor: pointer;
+  }
+  &:nth-child(even) {
+    background-color: mat.get-color-from-palette($light-foreground, 'lighter');
+    &:hover {
+      background-color: white;
+    }
+  }
+}
+.mat-column-type {
+  width: 50px;
+}
+.mat-cell, .mat-header-cell {
+  padding-left: 1em !important;
+}

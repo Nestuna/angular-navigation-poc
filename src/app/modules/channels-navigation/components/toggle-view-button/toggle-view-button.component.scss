@@ -1,0 +1,8 @@
+.toggle-view-control {
+    margin-left: .5rem;
+}
+::ng-deep mat-button-toggle {
+    .mat-button-toggle-label-content {
+        line-height: 36px !important;
+    }
+}

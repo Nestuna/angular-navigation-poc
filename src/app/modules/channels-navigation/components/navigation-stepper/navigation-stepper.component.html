@@ -1,15 +1,13 @@
 <div class="navigation-stepper">
     <span *ngFor="let channel of channelPath">
         <a
-            [routerLink]="['/channels']"
-            [queryParams]="{slug: channel.slug}">
+            [routerLink]="['/channels', channel.slug]">
             {{ channel.title }}
         </a> 
         > &nbsp;
     </span>
     <span
-        *ngIf="currentChannel"
-        style="text-decoration: underline;">
+        *ngIf="currentChannel">
         {{ currentChannel.title }}
     </span>
 </div>

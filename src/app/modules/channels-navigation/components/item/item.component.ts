@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Channel, Media } from 'angular-mediaserver-service';
-import { environment } from '../../../../../environments/environment';
+import { environment } from '@env/environment';
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
@@ -10,8 +10,8 @@ export class ItemComponent implements OnInit {
   hostUrl = environment.apiUrl;
   urlsByType: Record<string, string> = {
     c: '/channels',
-    v: this.hostUrl + '/videos',
-    l: this.hostUrl + '/lives',
+    v: '/videos',
+    l: '/lives',
   };
   itemUrl?: string;
 

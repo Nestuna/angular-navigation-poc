@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, SimpleChange } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Channel } from 'angular-mediaserver-service';
 
@@ -13,11 +13,12 @@ export class NavHeaderComponent implements OnInit {
   @Input() view!: string;
   @Output() viewChange = new EventEmitter<string>();
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private route: ActivatedRoute, private router: Router) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-  onToggleViewClick(newView: string): void {
+  onChangeView(newView: string): void {
     this.view = newView;
     this.viewChange.emit(this.view);
   }
@@ -25,8 +26,8 @@ export class NavHeaderComponent implements OnInit {
   selectSort(newSort: string): void {
     this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: { sort: newSort},
-      queryParamsHandling: 'merge'
-    })
+      queryParams: { sort: newSort },
+      queryParamsHandling: 'merge',
+    });
   }
 }

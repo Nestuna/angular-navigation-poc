@@ -1,8 +1,12 @@
-#channels-list {
-    margin-top: 1rem;
-    width: 100%;
+#channels-list-container {
+    margin: 1rem auto;
+    width: 98%;
     display: flex;
     flex-flow: row wrap;
+    @media screen and (max-width: 700px) {
+        justify-content: center;
+
+    }
     .item-container {
         margin: .5em;
         flex:.5 1;
@@ -15,9 +19,22 @@
         &.thumb {
             max-width: 275px;
         }
-
     }
     mat-spinner {
         margin: 5em auto;
+    }
+
+    .table-container {
+        width: 100%;
+    }
+}
+
+.pagination-container {
+    height: 10%;
+    width: 98%;
+    text-align: right;
+
+    button {
+        margin-right: .5rem;
     }
 }

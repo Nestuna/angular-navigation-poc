@@ -7,8 +7,9 @@
                 mat-mini-fab
                 class="mat-elevation-z0"
                 color="primary"
-                [routerLink]="['/channels']"
-                [queryParams]="{slug: channelPath[channelPath.length - 1]?.slug}">
+                [routerLink]="[
+                    '/channels',
+                    currentChannel.parent_slug ? currentChannel.parent_slug : '']">
                 <mat-icon>arrow_back</mat-icon>
             </a>
             <h1>
@@ -30,7 +31,7 @@
                 mat-button
                 [matMenuTriggerFor]="menu">
                 <mat-icon>sort</mat-icon>
-                <span>  TRIER PAR</span>
+                <span class="button-icon-label">TRIER PAR</span>
             </button>
             <mat-menu #menu="matMenu">
                 <button
@@ -44,22 +45,10 @@
                     Titre
                 </button>
             </mat-menu>
-            <button
-                mat-button
-                class="toggle-view-button">
-                <mat-icon
-                    title="switch to grid view"
-                    *ngIf="view=='list'"
-                    (click)="onToggleViewClick('thumb')">
-                    grid_view
-                </mat-icon>
-                <mat-icon
-                    title="switch to list view"
-                    *ngIf="view=='thumb'"
-                    (click)="onToggleViewClick('list')">
-                    view_list
-                </mat-icon>
-            </button>
+            <app-toggle-view-button
+                [currentView]="view"
+                (viewChange)="onChangeView($event)">
+            </app-toggle-view-button>
         </div>
     </mat-toolbar-row>
 </mat-toolbar>

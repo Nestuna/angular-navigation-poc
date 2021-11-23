@@ -1,0 +1,12 @@
+<mat-button-toggle-group class="toggle-view-control"
+    #group="matButtonToggleGroup"
+    (change)="onToggleViewClick($event)">
+    <mat-button-toggle
+        *ngFor="let viewName of views"
+        mat-button
+        class="toggle-view-button"
+        title="switch to {{ viewName }} view"
+        [value]="viewName">
+        <mat-icon>{{ views_icons[viewName] }}</mat-icon>
+    </mat-button-toggle>
+</mat-button-toggle-group>

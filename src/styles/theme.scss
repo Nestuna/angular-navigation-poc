@@ -121,9 +121,6 @@ $light-theme: mat.define-light-theme(
 /*** colors ***/
 .light-foreground {
   background-color: mat.get-color-from-palette($light-foreground);
-  &:hover {
-    background-color: mat.get-color-from-palette($light-foreground, "lighter");
-  }
 }
 
 .color-blue {
