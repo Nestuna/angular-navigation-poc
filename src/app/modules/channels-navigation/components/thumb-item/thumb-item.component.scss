@@ -1,26 +1,31 @@
 ::ng-deep mat-card.thumb {
-    width: 240px;
-    img.channel-thumb {
-        object-fit: cover;
-        height: 100px !important;
-        width: 100px !important;
-    }
-    img.live-thumb {
-        width: 100px;
-        height: 100px;
-        border-radius: 0 !important;
-        margin: 0 auto;
-    }
-    img.video-thumb {
-        max-width:271px;
-        height: 170px;
-        overflow: hidden;
+    padding: 0 0 .5em 0 !important;
+    width: 230px;
+
+
+    img.media-thumb {
         margin-bottom: 0 !important;
+        max-height: 100%;
+        height: auto;
+        width: auto;
+        object-fit: cover;
+        margin: auto;
     }
+
+    .media-thumb-container {
+        height: 135px;
+        margin-bottom: .5em;
+    }
+
+    .content-container {
+        margin: 1em;
+    }
+
     mat-card-header {
         display: block !important;
         text-align: center;
         overflow: hidden;
+
     }
 
     mat-card-content {
@@ -28,30 +33,19 @@
         font-size: 1.2em !important;
         font-weight: 500;
         height: 35px;
-        margin-bottom: 0 !important;
         overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        margin-bottom: 0 !important;
     }
     mat-card-footer {
         text-align: right;
         padding: 0 1em 1em 0;
     }
 
-    @media screen and (max-width: 700px) {
+    @media screen and (max-width: 770px) {
         margin: auto;
-        width: 175px;
-        font-size: .7rem !important;
-        img.channel-thumb {
-            height: 50px !important;
-            width: 50px !important;
-        }
-        img.live-thumb {
-            height: 60px !important;
-            width: 45px !important;
-        }
-        img.video-thumb {
-            height: 113px !important;
-            width: 206px !important;
-        }
+        font-size: .8rem !important;
         mat-card-content {
             height: 20px;
         }

@@ -1,19 +1,20 @@
-<mat-card class="light-foreground card-elevation-hover mat-elevation-z0 list">
+<mat-card
+    class="light-foreground card-elevation-hover mat-elevation-z0 list"
+    [ngClass]="{'mat-elevation-z2': item.type === 'c'}">
     <mat-card-header>
-        <img
+        <div
+            *ngIf="item.type !== 'c'"
             mat-card-avatar
+            class="media-thumb-container">
+            <img
+                class="media-thumb"
+                src="{{ item.thumb }}">
+        </div>
+        <img
             *ngIf="item.type == 'c'"
+            mat-card-avatar
             class="channel-thumb"
             src="{{ item.thumb }}">
-        <img mat-card-avatar
-            *ngIf="item.type == 'v'"
-            class="video-thumb"
-            src="{{ item.thumb }}">
-        <img mat-card-avatar
-            *ngIf="item.type == 'l'"
-            class="live-thumb"
-            src="{{ item.thumb }}">
-
         <mat-card-title>{{ item.title }}</mat-card-title>
         <mat-card-subtitle>{{ item.short_description }}</mat-card-subtitle>
         <span class="spacer"></span>

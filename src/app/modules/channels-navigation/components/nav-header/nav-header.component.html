@@ -1,18 +1,18 @@
 <mat-toolbar id="nav-header">
-    <mat-toolbar-row>
+    <mat-toolbar-row class="title-row">
         <div
             *ngIf="currentChannel; else root"
             class="navigation-title">
             <a
                 mat-mini-fab
-                class="mat-elevation-z0"
+                class="mat-elevation-z0 back-button"
                 color="primary"
                 [routerLink]="[
                     '/channels',
                     currentChannel.parent_slug ? currentChannel.parent_slug : '']">
                 <mat-icon>arrow_back</mat-icon>
             </a>
-            <h1>
+            <h1 class="title-container">
                 {{ currentChannel.title }}
             </h1>
         </div>

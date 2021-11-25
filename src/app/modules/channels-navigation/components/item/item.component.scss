@@ -1,0 +1,25 @@
+::ng-deep mat-card {
+    overflow: hidden;
+
+    .media-thumb-container {
+        text-align: center;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    img.media-thumb {
+        margin-bottom: 0 !important;
+        max-height: 100%;
+        height: auto;
+        width: auto;
+        object-fit: cover;
+        margin: auto;
+    }
+    img.channel-thumb {
+        object-fit: cover;
+        height: 100px !important;
+        width: 100px !important;
+    }
+
+
+}

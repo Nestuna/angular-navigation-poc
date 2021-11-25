@@ -11,19 +11,17 @@
         <app-table-view [items]="channelsAndMedias"></app-table-view>
     </div>
     <ng-template #items>
-        <div
+        <app-item
+            *ngFor="let item of itemsToShow"
             class="item-container"
             [class]="currentView"
-            *ngFor="let item of itemsToShow">
-            <app-item
-                [item]="item"
-                [view]="currentView">
-            </app-item>
-        </div>
+            [item]="item"
+            [view]="currentView">
+        </app-item>
     </ng-template>
     <mat-spinner *ngIf="isLoading"></mat-spinner>
 </div>
-<div class="pagination-container" *ngIf="pagesTotal > 1">
+<div class="pagination-container" *ngIf="pagesTotal > 1 && currentView !== 'table'">
     <button mat-stroked-button
         [disabled]="currentPage === 0"
         (click)="previousPage()">

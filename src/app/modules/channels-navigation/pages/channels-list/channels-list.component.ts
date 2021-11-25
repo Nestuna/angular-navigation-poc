@@ -4,6 +4,7 @@ import {
   Media,
   AngularMediaserverService,
   SearchOrder,
+  commonAllMediasType,
 } from 'angular-mediaserver-service';
 import {
   Router,
@@ -26,8 +27,15 @@ export class ChannelsListComponent implements OnInit {
   currentChannel?: Channel;
   channelPath: Channel[] = [];
 
-  ITEMS_NB_PER_PAGE: number = 9;
+  nb_items_per_page: number = 12;
   channelsAndMedias: Channel[] | Media[] = [];
+  items?: commonAllMediasType;
+  itemTypesKeys: Record<string, string> = {
+    c: 'channels',
+    v: 'videos',
+    l: 'liveStreams',
+    p: 'photoGroup'
+  };
   itemsToShow: typeof this.channelsAndMedias = [];
   currentPage: number = 0;
   pagesTotal: number = 0;
@@ -42,10 +50,11 @@ export class ChannelsListComponent implements OnInit {
         this.isLoading = true;
         this.channelsAndMedias = [];
         this.itemsToShow = [];
+        this.currentPage = 0;
         this.pagesTotal = 0;
       }
       if (event instanceof NavigationEnd) {
-        this.channelsAndMediasWithRouteParams();
+        this.getChannelsAndMediasWithRouteParams();
       }
     });
   }
@@ -54,7 +63,7 @@ export class ChannelsListComponent implements OnInit {
     this.isLoading = true;
   }
 
-  channelsAndMediasWithRouteParams(): void {
+  getChannelsAndMediasWithRouteParams(): void {
     const { slug } = this.route.snapshot.params;
     const { sort } = this.route.snapshot.queryParams;
     this.getCurrentChannelContent(slug, sort);
@@ -76,8 +85,11 @@ export class ChannelsListComponent implements OnInit {
   getRootChannelsAndMedias(sort?: SearchOrder): void {
     this.msService.channelContent({ order_by: sort }).subscribe((res) => {
       this.channelsAndMedias = res.channels;
+      this.items = res;
       this.isLoading = false;
-      this.pagesTotal = Math.ceil(this.channelsAndMedias.length / this.ITEMS_NB_PER_PAGE)
+      this.pagesTotal = Math.ceil(
+        this.channelsAndMedias.length / this.nb_items_per_page
+      );
       this.selectItemsToShow();
     });
   }
@@ -86,6 +98,7 @@ export class ChannelsListComponent implements OnInit {
     this.msService
       .channelContent({ parent_slug: parent_channel.slug, order_by: sort })
       .subscribe((res) => {
+        this.items = res;
         let itemsList: Channel[] | Media[] = [];
         for (const items of Object.values(res)) {
           itemsList.push(...items);
@@ -93,14 +106,16 @@ export class ChannelsListComponent implements OnInit {
         // we must re-assign data source to refresh mat-table
         this.channelsAndMedias = itemsList;
         this.isLoading = false;
-        this.pagesTotal = Math.ceil(this.channelsAndMedias.length / this.ITEMS_NB_PER_PAGE)
+        this.pagesTotal = Math.ceil(
+          this.channelsAndMedias.length / this.nb_items_per_page
+        );
         this.selectItemsToShow();
       });
   }
 
   selectItemsToShow(): void {
-    const firstItemIndex: number = this.currentPage * this.ITEMS_NB_PER_PAGE;
-    const lastItemIndex: number = firstItemIndex + (this.ITEMS_NB_PER_PAGE - 1);
+    const firstItemIndex: number = this.currentPage * this.nb_items_per_page;
+    const lastItemIndex: number = firstItemIndex + this.nb_items_per_page;
     this.itemsToShow = this.channelsAndMedias.slice(
       firstItemIndex,
       lastItemIndex
@@ -109,15 +124,11 @@ export class ChannelsListComponent implements OnInit {
 
   previousPage(): void {
     this.currentPage -= 1;
-    this.selectItemsToShow()
+    this.selectItemsToShow();
   }
 
   nextPage(): void {
     this.currentPage += 1;
-    this.selectItemsToShow()
-    console.log(this.pagesTotal);
-    console.log(this.currentPage);
-
-
+    this.selectItemsToShow();
   }
 }

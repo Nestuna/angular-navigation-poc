@@ -12,6 +12,7 @@ export class ItemComponent implements OnInit {
     c: '/channels',
     v: '/videos',
     l: '/lives',
+    p: '/photos'
   };
   itemUrl?: string;
 

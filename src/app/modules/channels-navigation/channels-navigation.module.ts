@@ -12,6 +12,7 @@ import { ToggleViewButtonComponent } from './components/toggle-view-button/toggl
 import { TableViewComponent } from './components/table-view/table-view.component';
 import { VideoComponent } from './pages/video/video.component';
 import { LiveComponent } from './pages/live/live.component';
+import { PhotosComponent } from './pages/photos/photos.component';
 @NgModule({
   declarations: [
     ChannelsListComponent,
@@ -23,7 +24,8 @@ import { LiveComponent } from './pages/live/live.component';
     ToggleViewButtonComponent,
     TableViewComponent,
     VideoComponent,
-    LiveComponent
+    LiveComponent,
+    PhotosComponent
     ],
   imports: [
     CommonModule,

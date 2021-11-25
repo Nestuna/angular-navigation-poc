@@ -3,23 +3,23 @@
     width: 98%;
     display: flex;
     flex-flow: row wrap;
-    @media screen and (max-width: 700px) {
-        justify-content: center;
+    @media screen and (max-width: 770px) {
+        justify-content: space-evenly;
 
     }
     .item-container {
-        margin: .5em;
-        flex:.5 1;
-        @media(max-width: 1080px) {
-            flex: 1 1;
-        }
+        margin: .5rem;
         &.list {
-            max-width: 100%;
-        }
-        &.thumb {
-            max-width: 275px;
+            flex: 30%;
+            @media(max-width: 1520px) {
+                flex: 50%;
+            }
+            @media(max-width: 975px) {
+                flex: 1;
+            }
         }
     }
+
     mat-spinner {
         margin: 5em auto;
     }
@@ -32,7 +32,7 @@
 .pagination-container {
     height: 10%;
     width: 98%;
-    text-align: right;
+    text-align: center;
 
     button {
         margin-right: .5rem;
