@@ -6,7 +6,7 @@
 <mat-divider></mat-divider>
 <div id="channels-list-container">
     <div
-        *ngIf="currentView == 'table'; else items"
+        *ngIf="currentView === 'table'; else items"
         class="table-container">
         <app-table-view [items]="channelsAndMedias"></app-table-view>
     </div>
@@ -15,6 +15,7 @@
             *ngFor="let item of itemsToShow"
             class="item-container"
             [class]="currentView"
+            [ngClass]="{ 'channel-item': item.type === 'c' }"
             [item]="item"
             [view]="currentView">
         </app-item>

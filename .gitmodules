@@ -1,0 +1,3 @@
+[submodule "submodules/ubicast-angular-common"]
+	path = submodules/ubicast-angular-common
+	url = https://git.ubicast.net/web/ubicast-angular-common

@@ -19,7 +19,9 @@ export class ToggleViewButtonComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    return
+  }
 
   onToggleViewClick(newViewEvent: MatButtonToggleChange): void {
     this.currentView = newViewEvent.value;

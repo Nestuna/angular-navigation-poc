@@ -4,9 +4,11 @@
     <mat-button-toggle
         *ngFor="let viewName of views"
         mat-button
-        class="toggle-view-button"
+        class="toggle-view-button {{ viewName }}-button"
         title="switch to {{ viewName }} view"
-        [value]="viewName">
+        id="{{ viewName }}"
+        [value]="viewName"
+        [checked]="currentView === viewName">
         <mat-icon>{{ views_icons[viewName] }}</mat-icon>
     </mat-button-toggle>
 </mat-button-toggle-group>

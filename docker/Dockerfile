@@ -1,15 +1,13 @@
-FROM archlinux
+FROM node:lts
 
-RUN pacman -Syu --noconfirm
-
-RUN pacman -Sy --noconfirm --needed base-devel npm nodejs chromium
+RUN apt update
+RUN apt install -yq chromium
 
 ENV CHROME_BIN /usr/bin/chromium
-
-RUN npm install -g n
-RUN n stable && node -v
-RUN npm install -g npm
+ENV PATH /ui/node_modules/.bin:$PATH
 
 WORKDIR /ui
 
-EXPOSE 8000
+COPY . /ui
+RUN npm install
+RUN npm install -g @angular/cli

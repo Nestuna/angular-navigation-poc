@@ -16,7 +16,8 @@ export class NavHeaderComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router) {
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
   onChangeView(newView: string): void {
     this.view = newView;

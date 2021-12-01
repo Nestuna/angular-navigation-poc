@@ -1,12 +1,20 @@
-const merge = require('deepmerge');
-const wdioConf = require('./wdio.conf.js');
 
-exports.config = merge(wdioConf.config, {
-    services: ['chromedriver'],
-    maxInstances: 1,
-    capabilities: [{
-        browserName: 'chrome',
-        acceptInsecureCerts: true
-    }]
-}, { clone: false });
+// ./webdriverio/local.conf.ts
 
+module.exports = {
+  capabilities: {
+    browserName: "chrome",
+    "goog:chromeOptions": {
+      args: [
+        '--no-sandbox',
+        '--window-size=1420,1080',
+        '--headless',
+        '--disable-gpu',
+      ]
+    }
+  },
+  waitforTimeout: 15000,
+  baseUrl: 'http://localhost:4200',
+  logLevel: 'error'
+
+};

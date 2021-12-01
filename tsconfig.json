@@ -7,8 +7,15 @@
       "@core/*":["src/app/core/*"],
       "@shared/*": ["src/app/shared/*"],
       "@modules/*": ["src/app/modules/*"],
-      "@env/*": ["src/environments/*"]
+      "@env/*": ["src/environments/*"],
     },
+    "types": [
+      "node",
+      "node-fetch",
+      "jest",
+      "webdriverio/async",
+      "wdio-wiremock-service"
+    ],
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,

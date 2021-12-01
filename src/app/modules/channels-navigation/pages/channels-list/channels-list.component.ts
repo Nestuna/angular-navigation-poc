@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   Channel,
   Media,
@@ -13,6 +13,7 @@ import {
   NavigationEnd,
   ActivatedRoute,
 } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-channels',
@@ -40,6 +41,7 @@ export class ChannelsListComponent implements OnInit {
   currentPage: number = 0;
   pagesTotal: number = 0;
 
+
   constructor(
     private msService: AngularMediaserverService,
     private router: Router,
@@ -52,12 +54,14 @@ export class ChannelsListComponent implements OnInit {
         this.itemsToShow = [];
         this.currentPage = 0;
         this.pagesTotal = 0;
+
       }
       if (event instanceof NavigationEnd) {
         this.getChannelsAndMediasWithRouteParams();
       }
     });
   }
+
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -66,6 +70,7 @@ export class ChannelsListComponent implements OnInit {
   getChannelsAndMediasWithRouteParams(): void {
     const { slug } = this.route.snapshot.params;
     const { sort } = this.route.snapshot.queryParams;
+
     this.getCurrentChannelContent(slug, sort);
   }
 
@@ -77,8 +82,8 @@ export class ChannelsListComponent implements OnInit {
         this.getChannelsAndMedias(res, sort);
       });
     } else {
-      this.getRootChannelsAndMedias(sort);
-      this.currentChannel = undefined;
+      this.getChannelsAndMedias();
+      this.currentChannel = undefined
     }
   }
 
@@ -94,9 +99,9 @@ export class ChannelsListComponent implements OnInit {
     });
   }
 
-  getChannelsAndMedias(parent_channel: Channel, sort?: SearchOrder): void {
+  getChannelsAndMedias(parentChannel?: Channel, sort?: SearchOrder): void {
     this.msService
-      .channelContent({ parent_slug: parent_channel.slug, order_by: sort })
+      .channelContent({ parent_slug: parentChannel?.slug, order_by: sort })
       .subscribe((res) => {
         this.items = res;
         let itemsList: Channel[] | Media[] = [];
