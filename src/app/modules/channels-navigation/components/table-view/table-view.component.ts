@@ -20,9 +20,14 @@ export class TableViewComponent {
   };
 
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    this.items = [];
+  }
 
-  navigateTo(item: any): void {
+  navigateTo(item: Channel | Media): void {
+    if (!item || !item.type) {
+      return
+    }
     const url = this.urlsByType[item.type] + '/' + item.slug
     if (item.type == 'c') {
       // for channels it's a relative route

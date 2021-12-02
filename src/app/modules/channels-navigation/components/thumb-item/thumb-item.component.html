@@ -1,9 +1,9 @@
 <mat-card
     class="card-elevation-hover mat-elevation-z0 light-foreground thumb"
-    [ngClass]="{'mat-elevation-z2': item.type === 'c'}">
+    [ngClass]="{'mat-elevation-z2': item && item.type === 'c'}">
     <div
         class="media-thumb-container"
-        *ngIf="item.type !== 'c'">
+        *ngIf="item && item.type !== 'c'">
         <img
             mat-card-image
             class="media-thumb"
@@ -13,16 +13,16 @@
         <mat-card-header>
             <img
                 mat-card-avatar
-                *ngIf="item.type === 'c'"
+                *ngIf="item && item.type === 'c'"
                 class="channel-thumb"
                 src="{{ item.thumb }}">
         </mat-card-header>
         <mat-card-content class="item-title">{{ item.title }}</mat-card-content>
         <mat-card-footer>
-            <mat-icon *ngIf="item.type ==='v'">play_circle_outline</mat-icon>
-            <mat-icon *ngIf="item.type ==='l'">podcasts</mat-icon>
-            <mat-icon *ngIf="item.type ==='c'">folder_open</mat-icon>
-            <mat-icon *ngIf="item.type ==='p'">photo</mat-icon>
+            <mat-icon *ngIf="item && item.type ==='v'">play_circle_outline</mat-icon>
+            <mat-icon *ngIf="item && item.type ==='l'">podcasts</mat-icon>
+            <mat-icon *ngIf="item && item.type ==='c'">folder_open</mat-icon>
+            <mat-icon *ngIf="item && item.type ==='p'">photo</mat-icon>
         </mat-card-footer>
     </div>
 </mat-card>

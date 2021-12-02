@@ -1,17 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavigationStepperComponent } from './navigation-stepper.component';
+import { NavigationStepperComponent } from '@modules/channels-navigation/components/navigation-stepper/navigation-stepper.component';
+import { loadAppTest } from './test';
 
 describe('NavigationStepperComponent', () => {
   let component: NavigationStepperComponent;
   let fixture: ComponentFixture<NavigationStepperComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ NavigationStepperComponent ]
-    })
-    .compileComponents();
-  });
+  loadAppTest();
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NavigationStepperComponent);

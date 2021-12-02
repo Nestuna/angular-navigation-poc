@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ItemComponent } from '../item/item.component';
+import { Channel, Media } from 'angular-mediaserver-service';
 
 @Component({
   selector: 'app-thumb-item',
@@ -7,5 +8,9 @@ import { ItemComponent } from '../item/item.component';
   styleUrls: ['./thumb-item.component.scss']
 })
 export class ThumbItemComponent {
-  @Input() item!: any;
+  @Input() item!: Channel | Media;
+
+  constructor() {
+    this.item = {};
+  }
 }

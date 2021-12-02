@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChannelsListComponent } from './pages';
-import { MaterialModule } from 'src/app/shared/material.module';
 import { RouterModule } from '@angular/router';
+
+import { MaterialModule } from '../../shared/material.module';
 import { NavigationStepperComponent } from './components/navigation-stepper/navigation-stepper.component';
 import { ListItemComponent } from './components/list-item/list-item.component';
 import { NavHeaderComponent } from './components/nav-header/nav-header.component';
@@ -13,6 +14,7 @@ import { TableViewComponent } from './components/table-view/table-view.component
 import { VideoComponent } from './pages/video/video.component';
 import { LiveComponent } from './pages/live/live.component';
 import { PhotosComponent } from './pages/photos/photos.component';
+
 @NgModule({
   declarations: [
     ChannelsListComponent,

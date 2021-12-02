@@ -17,7 +17,9 @@ export class ToggleViewButtonComponent implements OnInit {
   }
   views: string[] = Object.keys(this.views_icons)
 
-  constructor() {}
+  constructor() {
+    this.currentView = '';
+  }
 
   ngOnInit(): void {
     return

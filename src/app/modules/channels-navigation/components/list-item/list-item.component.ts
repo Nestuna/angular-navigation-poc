@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ItemComponent } from '../item/item.component';
+import { Channel, Media } from 'angular-mediaserver-service';
 
 @Component({
   selector: 'app-list-item',
@@ -7,5 +8,8 @@ import { ItemComponent } from '../item/item.component';
   styleUrls: ['./list-item.component.scss'],
 })
 export class ListItemComponent {
-  @Input() item!: any;
+  @Input() item: Channel | Media;
+  constructor() {
+    this.item = {};
+  }
 }

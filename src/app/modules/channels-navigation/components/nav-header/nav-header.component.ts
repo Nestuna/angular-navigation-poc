@@ -14,6 +14,7 @@ export class NavHeaderComponent {
   @Output() viewChange = new EventEmitter<string>();
 
   constructor(private route: ActivatedRoute, private router: Router) {
+    this.view = '';
   }
 
   onChangeView(newView: string): void {

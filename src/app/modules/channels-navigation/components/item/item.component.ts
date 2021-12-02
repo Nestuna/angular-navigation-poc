@@ -19,7 +19,10 @@ export class ItemComponent implements OnInit {
   @Input() item!: Channel | Media;
   @Input() view!: string;
 
-  constructor() {}
+  constructor() {
+    this.item = {};
+    this.view = '';
+  }
 
   ngOnInit(): void {
     this.itemUrl = this.item.type

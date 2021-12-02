@@ -1,17 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavHeaderComponent } from './nav-header.component';
+import { NavHeaderComponent } from '@modules/channels-navigation/components/nav-header/nav-header.component';
+import { loadAppTest } from './test';
 
 describe('NavHeaderComponent', () => {
   let component: NavHeaderComponent;
   let fixture: ComponentFixture<NavHeaderComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ NavHeaderComponent ]
-    })
-    .compileComponents();
-  });
+  loadAppTest();
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NavHeaderComponent);

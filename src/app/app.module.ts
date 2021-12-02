@@ -18,7 +18,7 @@ import {
 import { SharedModule } from './shared/shared.module';
 import { ChannelsNavigationModule } from './modules/channels-navigation/channels-navigation.module';
 import { CoreModule } from '@core/core.module';
-import { environment } from 'src/environments/environment';
+import { environment } from '@env/environment';
 
 export class MediaserverConfigLocal {
   baseUrl = environment.apiUrl;
