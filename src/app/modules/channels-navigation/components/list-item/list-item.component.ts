@@ -6,11 +6,10 @@ import { ItemComponent } from '../item/item.component';
   templateUrl: './list-item.component.html',
   styleUrls: ['./list-item.component.scss'],
 })
-export class ListItemComponent implements OnInit  {
+export class ListItemComponent  {
   @Input() item!: any;
 
   constructor() {
   }
 
-  ngOnInit(): void {}
 }

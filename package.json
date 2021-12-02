@@ -29,8 +29,6 @@
     "@angular/platform-browser-dynamic": "latest",
     "@angular/router": "latest",
     "angular-mediaserver-service": "file:submodules/ubicast-angular-common/dist/angular-mediaserver-service/angular-mediaserver-service-0.0.1.tgz",
-    "material": "latest",
-    "material-icons": "latest",
     "rxjs": "latest",
     "tslib": "latest",
     "ubicast-angular-common": "file:submodules/ubicast-angular-common/dist/ubicast-angular-common/ubicast-angular-common-0.0.1.tgz",
