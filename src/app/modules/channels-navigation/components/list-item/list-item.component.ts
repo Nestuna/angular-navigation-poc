@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ItemComponent } from '../item/item.component';
 
 @Component({
@@ -6,10 +6,6 @@ import { ItemComponent } from '../item/item.component';
   templateUrl: './list-item.component.html',
   styleUrls: ['./list-item.component.scss'],
 })
-export class ListItemComponent  {
+export class ListItemComponent {
   @Input() item!: any;
-
-  constructor() {
-  }
-
 }

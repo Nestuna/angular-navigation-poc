@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ItemComponent } from '../item/item.component';
 
 @Component({
@@ -6,13 +6,6 @@ import { ItemComponent } from '../item/item.component';
   templateUrl: './thumb-item.component.html',
   styleUrls: ['./thumb-item.component.scss']
 })
-export class ThumbItemComponent implements OnInit {
+export class ThumbItemComponent {
   @Input() item!: any;
-
-  constructor() {
-   }
-
-  ngOnInit(): void {
-  }
-
 }

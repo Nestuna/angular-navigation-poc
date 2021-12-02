@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter, SimpleChange } from '@angular/core';
+import { Component, Input, Output, EventEmitter, SimpleChange } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Channel } from 'angular-mediaserver-service';
 
@@ -7,16 +7,13 @@ import { Channel } from 'angular-mediaserver-service';
   templateUrl: './nav-header.component.html',
   styleUrls: ['./nav-header.component.scss'],
 })
-export class NavHeaderComponent implements OnInit {
+export class NavHeaderComponent {
   @Input() currentChannel?: Channel;
   @Input() channelPath: Channel[] = [];
   @Input() view!: string;
   @Output() viewChange = new EventEmitter<string>();
 
   constructor(private route: ActivatedRoute, private router: Router) {
-  }
-
-  ngOnInit(): void {
   }
 
   onChangeView(newView: string): void {

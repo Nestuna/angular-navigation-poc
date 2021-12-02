@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Channel, Media } from 'angular-mediaserver-service';
 import { environment } from '@env/environment';
@@ -8,7 +8,7 @@ import { environment } from '@env/environment';
   templateUrl: './table-view.component.html',
   styleUrls: ['./table-view.component.scss'],
 })
-export class TableViewComponent implements OnInit {
+export class TableViewComponent {
   @Input() items!: Channel[] | Media[];
 
   itemsProps: string[] = ['type', 'title','speaker', 'add_date'];
@@ -21,9 +21,6 @@ export class TableViewComponent implements OnInit {
 
 
   constructor(private router: Router) {}
-
-  ngOnInit(): void {
-  }
 
   navigateTo(item: any): void {
     const url = this.urlsByType[item.type] + '/' + item.slug
