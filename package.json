@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
+    "test": "ng test --collect-coverage",
     "e2e-chrome": "npx wdio run webdriverio/windows/chrome.conf.js",
     "e2e-firefox": "npx wdio run webdriverio/windows/firefox.conf.js",
     "e2e-edge": "npx wdio run webdriverio/windows/edge.conf.js",

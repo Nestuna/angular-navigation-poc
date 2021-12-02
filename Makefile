@@ -58,7 +58,7 @@ else
 	npm run e2e-${BROWSER_NAME}
 endif
 
-test_browser_local: run_container
+test_browser_local:
 	$(MAKE) run_container
 	docker exec -d ${TMP_DOCKER_CT} make serve
 	@echo "Wait 20s dev server start"

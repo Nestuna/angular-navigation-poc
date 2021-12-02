@@ -2,7 +2,7 @@
 
 module.exports = {
   collectCoverageFrom: [
-    '<rootDir>/tests/e2e/*.spec.ts'
+    '<rootDir>/tests/unit/*.spec.ts'
   ],
 
   coverageDirectory: 'coverage',
@@ -20,7 +20,7 @@ module.exports = {
   ],
 
   testMatch: [
-    '<rootDir>/tests/e2e/*.spec.ts'
+    '<rootDir>/tests/unit/*.spec.ts'
   ],
   "modulePathIgnorePatterns": ["<rootDir>/submodules/"]
 };
