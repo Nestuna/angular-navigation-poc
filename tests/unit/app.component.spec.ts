@@ -18,14 +18,4 @@ describe('AppComponent', () => {
   it('should create the app', () => {
     expect(app).toBeTruthy();
   });
-
-  it(`should have as title 'boilerplate-angular'`, () => {
-    expect(app.title).toEqual('boilerplate-angular');
-  });
-
-  it('should render title', () => {
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('boilerplate-angular');
-  });
 });

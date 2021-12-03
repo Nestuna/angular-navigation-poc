@@ -11,8 +11,8 @@ exports.config = merge(wdioConf.config, {
             'os' : 'Windows',
             'osVersion' : '10',
             'local': true,
-            'projectName' : 'Boilerplate Angular',
-            'buildName' : 'Boilerplate Angular on Windows 10 chrome'
+            'projectName' : 'Nav poc',
+            'buildName' : 'Nav poc on Windows 10 chrome'
         },
         browserName: 'chrome',
         acceptInsecureCerts: true

@@ -1,17 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ThumbItemComponent } from './thumb-item.component';
+import { ThumbItemComponent } from '@modules/channels-navigation/components/thumb-item/thumb-item.component';
+import { loadAppTest } from './test';
 
 describe('ThumbItemComponent', () => {
   let component: ThumbItemComponent;
   let fixture: ComponentFixture<ThumbItemComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ ThumbItemComponent ]
-    })
-    .compileComponents();
-  });
+  loadAppTest();
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ThumbItemComponent);

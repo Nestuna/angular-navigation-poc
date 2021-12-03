@@ -1,8 +1,6 @@
-/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
-
 module.exports = {
   collectCoverageFrom: [
-    '<rootDir>/tests/e2e/*.spec.ts'
+    '<rootDir>/tests/unit/*.spec.ts'
   ],
 
   coverageDirectory: 'coverage',
@@ -20,7 +18,13 @@ module.exports = {
   ],
 
   testMatch: [
-    '<rootDir>/tests/e2e/*.spec.ts'
+    '<rootDir>/tests/unit/*.spec.ts'
   ],
-  "modulePathIgnorePatterns": ["<rootDir>/submodules/"]
+  moduleNameMapper: {
+    "^@core/(.*)$": ["<rootDir>/src/app/core/$1"],
+    "^@shared/(.*)$": ["<rootDir>/src/app/shared/$1"],
+    "^@modules/(.*)$": ["<rootDir>/src/app/modules/$1"],
+    "^@env/(.*)$": ["<rootDir>/src/environments/$1"]
+  },
+  modulePathIgnorePatterns: ["<rootDir>/submodules/"]
 };

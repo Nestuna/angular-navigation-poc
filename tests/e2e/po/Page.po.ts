@@ -1,19 +1,14 @@
-import { Browser, Element, ElementArray } from 'webdriverio';
+import { Element, ElementArray } from 'webdriverio';
 
 export class Page {
-  browser!: Browser<'async'>;
-
-  constructor(browser: Browser<'async'>) {
-    this.browser = browser;
-  }
 
   async navigateTo(route?: string): Promise<void> {
     if (!route) route = '/';
-    await this.browser.url(route);
+    await browser.url(route);
   }
 
   async getAppTitle(): Promise<string> {
-    return await this.browser.$('<title>').getText();
+    return await browser.getTitle();
   }
 
   async getNavigationTitle(): Promise<string> {
@@ -21,11 +16,11 @@ export class Page {
     return await elt.getText();
   }
   async getNavigationTitleElement(): Promise<Element<'async'>> {
-    return await this.browser.$('#nav-header .title-container');
+    return await browser.$('#nav-header .title-container');
   }
 
   async getItemTitleElement(): Promise<Element<'async'>> {
-    return await this.browser.$('.item-title');
+    return await browser.$('.item-title');
   }
 
   async getItems(options?: { tableView?: boolean, channel?: boolean }): Promise<ElementArray> {
@@ -37,11 +32,11 @@ export class Page {
       selector = '.channel-item'
     }
 
-    const channelItem = await this.browser.$(selector);
+    const channelItem = await browser.$(selector);
     await channelItem.waitForExist({
       timeout: 5000,
       timeoutMsg: 'item not found',
     });
-    return await this.browser.$$(selector);
+    return await browser.$$(selector);
   }
 }

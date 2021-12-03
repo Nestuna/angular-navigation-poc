@@ -1,17 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ItemComponent } from './item.component';
+import { ItemComponent } from '@modules/channels-navigation/components/item/item.component';
+import { loadAppTest } from './test';
 
 describe('ItemComponent', () => {
   let component: ItemComponent;
   let fixture: ComponentFixture<ItemComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ ItemComponent ]
-    })
-    .compileComponents();
-  });
+  loadAppTest();
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ItemComponent);

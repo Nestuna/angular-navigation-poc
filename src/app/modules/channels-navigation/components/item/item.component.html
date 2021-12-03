@@ -1,5 +1,5 @@
 <a
-    *ngIf="item.type === 'c'; else media"
+    *ngIf="item && item.type === 'c'; else media"
     [routerLink]="itemUrl">
     <app-list-item
         *ngIf="view === 'list'"
